@@ -81,7 +81,6 @@ input{
   transition: .3s ease all;
 }
 
-
 .login::after {
   content: "";
   width: 100%;
