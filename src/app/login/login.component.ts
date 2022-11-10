@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder} from "@angular/forms";
 import {ApiService} from "../providers/api.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-login',
@@ -14,7 +15,7 @@ export class LoginComponent implements OnInit {
     password:['']
   })
 
-  constructor(private fb:FormBuilder, private api:ApiService) { }
+  constructor(private fb:FormBuilder, private api:ApiService, private router:Router) { }
 
   ngOnInit(): void {
   }
@@ -24,8 +25,12 @@ export class LoginComponent implements OnInit {
     this.api.login(this.form_login.value)
       .subscribe(
         data=>{
-          console.log(data)
+          if(data != undefined){
+            this.api.user = data
+            this.router.navigate(['/home'])
+          }
         }
       )
   }
 }
+

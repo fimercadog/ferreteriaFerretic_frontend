@@ -30,6 +30,7 @@ body{
 
 .col1 p{
   font-size: 15px;
+  color: #000000;
 }
 
 .col2{
@@ -42,6 +43,7 @@ form{
   box-shadow: 0 2px 4px rgb(0 0 0 / 10%), 0 8px 16px rgb(0 0 0 / 10%);
   border-radius: 12px;
   text-align: center;
+  margin-top: 20px;
 }
 
 input{
@@ -98,7 +100,7 @@ input{
 
 .forgot{
   text-decoration: none;
-  color: #a14300;
+  color: #000000;
 }
 
 hr {
@@ -110,6 +112,8 @@ hr {
   font-size: 14px;
   text-align: center;
   margin-top: 28px;
+  color: #000000;
+  margin-bottom: 20px;
 }
 
 @media screen and (max-width: 900px) {
@@ -120,7 +124,7 @@ hr {
   .col1{
     margin: auto;
     text-align: center;
-    width: 400px;
+    width: 300px;
     padding-right: 0;
   }
   .col1 p{

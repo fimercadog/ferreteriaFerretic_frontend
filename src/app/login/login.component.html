@@ -13,14 +13,14 @@
     <div class="col2">
       <form [formGroup]="form_login">
         <div>
-          <input formControlName="username" type="text" placeholder="Nombre de Usuario">
+          <input formControlName="username" type="text" placeholder="Nombre de Usuario" pInputText>
         </div>
         <br>
         <div>
-          <input formControlName="password" type="text" placeholder="Contraseña">
+          <input formControlName="password" type="text" placeholder="Contraseña" pInputText>
         </div>
         <br>
-        <button class="login" (click)="get_token()"> <span>Iniciar Sesión</span></button>
+        <button class="login" pButton (click)="get_token()"> <span>Iniciar Sesión</span></button>
         <a href="#" class="forgot">Olvidaste tu contraseña?</a>
       </form>
       <p><strong>Gestiona compras a proveedores y ventas a clientes</strong></p>

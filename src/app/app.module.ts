@@ -7,20 +7,32 @@ import { AppRoutingModule } from "./app-routing.module";
 import { ApiService } from "./providers/api.service";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { HttpClientModule } from "@angular/common/http";
+import { HomeComponent } from './home/home.component';
+import {AuthGuard} from "./providers/auth.guard";
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import {InputTextModule} from 'primeng/inputtext';
+import {ButtonModule} from 'primeng/button';
+import {CardModule} from 'primeng/card';
+
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent
+    LoginComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    BrowserAnimationsModule,
+    InputTextModule,
+    ButtonModule,
+    CardModule
   ],
-  providers: [ApiService],
+  providers: [ApiService, AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
