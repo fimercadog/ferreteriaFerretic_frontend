@@ -23,4 +23,4 @@ export class AuthGuard implements CanActivate {
     }
   }
 }
-/*TODO: Restriction is not working, it can access to home withouth user*/
+/*TODO: Restriction is not working, it can access to home without user*/

@@ -8,7 +8,7 @@
   <div class="container">
     <div class="col1">
       <img src="assets/logo.png" alt="" class="logo">
-      <p>Bienvenido al panel para usuarios de Ferretería FerreTIC</p>
+      <p>Bienvenido al panel para usuarios de la Ferretería FerreTIC</p>
     </div>
     <div class="col2">
       <form [formGroup]="form_login">
@@ -17,10 +17,10 @@
         </div>
         <br>
         <div>
-          <input formControlName="password" type="text" placeholder="Contraseña" pInputText>
+          <p-password formControlName="password" placeholder="Contraseña" [toggleMask]="true"></p-password>
         </div>
         <br>
-        <button class="login" pButton (click)="get_token()"> <span>Iniciar Sesión</span></button>
+        <button id="login" pButton (click)="get_token()" class="p-button-raised p-button-rounded"> <span>Iniciar Sesión</span></button>
         <a href="#" class="forgot">Olvidaste tu contraseña?</a>
       </form>
       <p><strong>Gestiona compras a proveedores y ventas a clientes</strong></p>

@@ -19,8 +19,10 @@ body{
 
 .logo{
   margin-top: 50px;
-  width: 200px;
+  width: 350px;
   border-radius: 15px;
+  margin-left: 4%;
+  margin-bottom: 20px;
 }
 
 .col1{
@@ -48,40 +50,43 @@ form{
 
 input{
   display: block;
-  width: 100%;
+  width: 70%;
+  height: 45px;
   padding: 16px;
-  margin: 6px 0;
-  border: 1px solid #dddfe2;
-  border-radius: 12px;
+  margin: auto;
+  border-radius: 5px;
 }
 
-.login{
+p-password{
+  display: block;
+  width: 100%;
+}
+
+#login{
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 100%;
-  height: 50px;
+  width: 90%;
+  height: 45px;
   background: #ff9859;
   color: #fff;
   font-family: 'Roboto', sans-serif;
   font-size: 20px;
   font-weight: 500;
   border: none;
-  cursor: pointer;
   transition: .3s ease all;
-  border-radius: 5px;
   position: relative;
   overflow: hidden;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
 }
 
-.login span {
+#login span {
   position: relative;
   z-index: 2;
   transition: .3s ease all;
 }
 
-.login::after {
+#login::after {
   content: "";
   width: 100%;
   position: absolute;
@@ -93,7 +98,7 @@ input{
   transition: .4s ease-in-out all;
 }
 
-.login:hover::after {
+#login:hover::after {
   left: 0;
 }
 
@@ -105,6 +110,11 @@ input{
 hr {
   margin: 16px 0;
   border: 1px solid #ddd;
+}
+
+.col2 a{
+  padding: 10px;
+
 }
 
 .col2 p{

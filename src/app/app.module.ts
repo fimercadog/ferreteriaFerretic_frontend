@@ -13,6 +13,7 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {InputTextModule} from 'primeng/inputtext';
 import {ButtonModule} from 'primeng/button';
 import {CardModule} from 'primeng/card';
+import {PasswordModule} from 'primeng/password';
 
 
 @NgModule({
@@ -30,7 +31,8 @@ import {CardModule} from 'primeng/card';
     BrowserAnimationsModule,
     InputTextModule,
     ButtonModule,
-    CardModule
+    CardModule,
+    PasswordModule
   ],
   providers: [ApiService, AuthGuard],
   bootstrap: [AppComponent]
