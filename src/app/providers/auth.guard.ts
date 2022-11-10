@@ -14,8 +14,7 @@ export class AuthGuard implements CanActivate {
   ):
     | Observable<boolean | UrlTree>
     | Promise<boolean | UrlTree>
-    | boolean
-    | UrlTree {
+    | boolean | UrlTree {
     if(this.api.user){
       return true;
     }else {
@@ -24,3 +23,4 @@ export class AuthGuard implements CanActivate {
     }
   }
 }
+/*TODO: Restriction is not working, it can access to home withouth user*/
