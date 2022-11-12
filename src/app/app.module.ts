@@ -14,13 +14,15 @@ import {InputTextModule} from 'primeng/inputtext';
 import {ButtonModule} from 'primeng/button';
 import {CardModule} from 'primeng/card';
 import {MenubarModule} from 'primeng/menubar';
+import { ClientComponent } from './client/client.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    HomeComponent
+    HomeComponent,
+    ClientComponent
   ],
   imports: [
     BrowserModule,

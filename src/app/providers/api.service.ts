@@ -12,13 +12,25 @@ export class ApiService {
   base_url = 'http://127.0.0.1:8000' //API direction from cine
   header_login = new HttpHeaders().set('Content-Type', 'application/json')
   options_login = {headers:this.header_login}
-
+  header_token:any;
+  options_token:any;
   constructor(private http:HttpClient,private router:Router) { } //http is the alias to call it
 
   login(data:any){
     let url = `${this.base_url+'/token'}`
     let credentials = JSON.stringify(data)
     return this.http.post(url, credentials, this.options_login).pipe(catchError(this.handleError<any>()))
+  }
+
+  get(end_point:string):Observable<any []>{
+    let url=`${this.base_url+'/'+end_point+'/'}`
+    return this.http.get(url,this.options_token).pipe(catchError(this.handleError<any>()))
+  }
+
+  add_token(token:string){
+    this.header_token=new HttpHeaders().set('Content-Type', 'application/json')
+      .set('Authorizacion','Token '+token)
+    this.options_token ={headers:this.header_token}
   }
 
   logOut(){

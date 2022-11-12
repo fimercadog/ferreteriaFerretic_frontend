@@ -27,6 +27,7 @@ export class LoginComponent implements OnInit {
         data=>{
           if(data != undefined){
             this.api.user = data
+            this.api.add_token(this.api.user.token)
             this.router.navigate(['/home'])
           }
         }

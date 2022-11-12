@@ -1,4 +1,5 @@
 import {Component} from '@angular/core';
+import {Router} from '@angular/router';
 import {MenuItem} from "primeng/api";
 import {ApiService} from "./providers/api.service";
 
@@ -10,14 +11,18 @@ import {ApiService} from "./providers/api.service";
 export class AppComponent {
   items: MenuItem[] = [];
 
-  constructor(public api:ApiService) {
+  constructor(public api: ApiService, private router: Router) {
     this.items = [
       {label: 'gestion de ferreteria'},
-      {label: 'gestion de sala'},
-      {label: 'gestion de pelicula'},
-      {label: 'gestion de funcion'},
-      {label: 'gestion de boleta'},
-      {label: 'gestion de cliente'},
+      {label: 'gestion de product'},
+      {label: 'gestion de employee'},
+      {label: 'gestion de vendor'},
+      {
+        label: 'gestion de client', command: () => {
+          this.router.navigate(['/client'])
+        }
+      },
+      {label: 'gestion de invoice'},
       {
         label: 'salir', command: () => {
           this.api.logOut()
