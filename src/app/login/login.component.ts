@@ -11,8 +11,8 @@ import {Router} from "@angular/router";
 export class LoginComponent implements OnInit {
 
   form_login = this.fb.group({
-    username:[''],
-    password:['']
+    username:['masteruser'],
+    password:['123456']
   })
 
   constructor(private fb:FormBuilder, private api:ApiService, private router:Router) { }
