@@ -15,6 +15,12 @@ import {ButtonModule} from 'primeng/button';
 import {CardModule} from 'primeng/card';
 import {MenubarModule} from 'primeng/menubar';
 import { ClientComponent } from './client/client.component';
+import {TableModule} from 'primeng/table';
+import { VendorComponent } from './vendor/vendor.component';
+import { OrderComponent } from './order/order.component';
+import { EmployeeComponent } from './employee/employee.component';
+import { InvoiceComponent } from './invoice/invoice.component';
+import { ProductComponent } from './product/product.component';
 
 
 @NgModule({
@@ -22,7 +28,12 @@ import { ClientComponent } from './client/client.component';
     AppComponent,
     LoginComponent,
     HomeComponent,
-    ClientComponent
+    ClientComponent,
+    VendorComponent,
+    OrderComponent,
+    EmployeeComponent,
+    InvoiceComponent,
+    ProductComponent
   ],
   imports: [
     BrowserModule,
@@ -34,7 +45,8 @@ import { ClientComponent } from './client/client.component';
     InputTextModule,
     ButtonModule,
     CardModule,
-    MenubarModule
+    MenubarModule,
+    TableModule
   ],
   providers: [ApiService, AuthGuard],
   bootstrap: [AppComponent]

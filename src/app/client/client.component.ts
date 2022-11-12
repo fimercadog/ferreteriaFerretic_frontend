@@ -1,4 +1,5 @@
 import {Component, OnInit} from '@angular/core';
+import { Router } from '@angular/router';
 import {ApiService} from "../providers/api.service";
 
 @Component({
@@ -8,17 +9,20 @@ import {ApiService} from "../providers/api.service";
 })
 export class ClientComponent implements OnInit {
 
-  constructor(private api: ApiService) {
+  clients:any=[]
+
+  constructor(private api: ApiService, private router: Router) {
   }
 
   ngOnInit(): void {
-    this.get_client()
+    this.get_clients()
   }
 
-  get_client() {
+  get_clients() {
     this.api.get('client')
       .subscribe(
         data => {
+          this.clients=data
           console.log(data)
         }
       )
