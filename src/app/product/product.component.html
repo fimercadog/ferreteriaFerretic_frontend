@@ -1,1 +1,53 @@
-<p>product works!</p>
+<div style="padding: 30px" >
+  <p-table [value]="products" selectionMode="single" [(selection)]="selectedProduct" (onRowSelect)="fill_form_product()">
+    <ng-template pTemplate="caption">
+      <p-button icon="pi pi-plus" (click)="show_form_products = true"></p-button>
+    </ng-template>
+    <ng-template pTemplate="header">
+      <tr>
+        <th>ID</th>
+        <th>Nombre</th>
+        <th>Descripción</th>
+        <th>Precio</th>
+        <th>Stock</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-product>
+      <tr [pSelectableRow]="product">
+        <td>{{product.id}}</td>
+        <td>{{product.product_name}}</td>
+        <td>{{product.product_description}}</td>
+        <td>{{product.product_price}}</td>
+        <td>{{product.product_stock}}</td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>
+<p-dialog header="Datos del Producto" [(visible)]="show_form_products" [position]="'top'" [modal]="true">
+  <form style="text-align: center" [formGroup]="form_product">
+    <div style="padding: 10px">
+      <input formControlName="product_name" type="text" placeholder="Nombre del Producto" pInputText>
+    </div>
+    <br>
+    <div style="padding: 10px">
+      <textarea formControlName="product_description" placeholder="Descripción" pInputTextarea></textarea>
+    </div>
+    <br>
+    <div class="field col-12 md:col-3" style="padding: 15px">
+      <label style="padding: 10px">Precio</label>
+      <p-inputNumber formControlName="product_price" [(ngModel)]="price" [showButtons]="true" buttonLayout="horizontal" inputId="horizontal" spinnerMode="horizontal" [step]="5000"
+                     decrementButtonClass="p-button-danger" incrementButtonClass="p-button-success" incrementButtonIcon="pi pi-plus" decrementButtonIcon="pi pi-minus" mode="currency" currency="USD">
+      </p-inputNumber>
+      </div>
+    <br>
+    <div class="field col-12 md:col-3">
+      <label style="display: block">Cantidad</label>
+      <p-inputNumber formControlName="product_stock" [(ngModel)]="quantity" [showButtons]="true" buttonLayout="vertical" spinnerMode="vertical" inputId="vertical"
+                     decrementButtonClass="p-button-secondary" incrementButtonClass="p-button-secondary" incrementButtonIcon="pi pi-plus" decrementButtonIcon="pi pi-minus">
+      </p-inputNumber>
+    </div>
+  </form>
+  <ng-template pTemplate="footer">
+    <p-button icon="pi pi-check" label="Guardar" (click)="save()" styleClass="p-button-text"></p-button>
+  </ng-template>
+</p-dialog>

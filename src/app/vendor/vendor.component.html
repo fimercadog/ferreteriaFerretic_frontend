@@ -1,1 +1,48 @@
-<p>vendor works!</p>
+<div style="padding: 30px">
+  <p-table [value]="vendors" selectionMode="single" [(selection)]="selectedVendor" (onRowSelect)="fill_form_vendor()">
+    <ng-template pTemplate="caption">
+      <p-button icon="pi pi-plus" (click)="show_form_vendors = true"></p-button>
+    </ng-template>
+    <ng-template pTemplate="header">
+      <tr>
+        <th>ID</th>
+        <th>Nombre</th>
+        <th>Dirección</th>
+        <th>Teléfono</th>
+        <th>Email</th>
+
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-order>
+      <tr [pSelectableRow]="order">
+        <td>{{order.id}}</td>
+        <td>{{order.vendor_name}}</td>
+        <td>{{order.vendor_address}}</td>
+        <td>{{order.vendor_telephone}}</td>
+        <td>{{order.vendor_email}}</td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>
+<p-dialog header="Datos del Proveedor" [(visible)]="show_form_vendors" [position]="'top'" [modal]="true">
+  <form style="text-align: center" [formGroup]="form_vendor">
+    <div style="padding: 10px">
+      <input formControlName="vendor_name" type="text" placeholder="Nombre" pInputText>
+    </div>
+    <br>
+    <div style="padding: 10px">
+      <input formControlName="vendor_address" type="text" placeholder="Dirección" pInputText>
+    </div>
+    <br>
+    <div style="padding: 10px">
+      <input formControlName="vendor_telephone" type="text" placeholder="Teléfono" pInputText>
+    </div>
+    <br>
+    <div style="padding: 10px">
+      <input formControlName="vendor_email" type="text" placeholder="Email" pInputText>
+    </div>
+  </form>
+  <ng-template pTemplate="footer">
+    <p-button icon="pi pi-check" label="Guardar" (click)="save()" styleClass="p-button-text"></p-button>
+  </ng-template>
+</p-dialog>

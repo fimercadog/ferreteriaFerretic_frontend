@@ -11,23 +11,33 @@ import {ApiService} from "./providers/api.service";
 export class AppComponent {
   items: MenuItem[] = [];
 
-  constructor(public api: ApiService, private router: Router) {
+  constructor(public api:ApiService, private router:Router) {
     this.items = [
-      {label: 'gestion de ferreteria'},
-      {label: 'gestion de product'},
-      {label: 'gestion de employee'},
-      {label: 'gestion de vendor'},
-      {
-        label: 'gestion de client', command: () => {
+      {label:'Gestión de Empleado', command: (event) =>{
+          this.router.navigate(['/employee'])
+        }},
+      {label:'Gestión de Proveedor', command: (event) =>{
+          this.router.navigate(['/vendor'])
+        }},
+      {label:'Gestión de Cliente', command: (event) =>{
           this.router.navigate(['/client'])
-        }
-      },
-      {label: 'gestion de invoice'},
-      {
-        label: 'salir', command: () => {
-          this.api.logOut()
-        }
-      }
+        }},
+      {label:'Gestión de Producto', command: (event) =>{
+          this.router.navigate(['/product'])
+        }},
+      {label:'Gestión de Pedido', command: (event) =>{
+          this.router.navigate(['/order'])
+        }},
+      {label:'Gestión de Factura', command: (event) =>{
+          this.router.navigate(['/invoice'])
+        }},
+      {label:'Compras', command: (event) =>{
+          this.router.navigate(['/purchase'])
+        }},
+      {label:'Ventas', command: (event) =>{
+      this.router.navigate(['/sold'])
+    }},
+      {label:'Salir', command: (event) => {this.api.logout()}},
     ]
   }
 }

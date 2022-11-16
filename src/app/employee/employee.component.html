@@ -1,1 +1,59 @@
-<p>employee works!</p>
+<div style="padding: 30px">
+  <p-table [value]="employees" selectionMode="single" [(selection)]="selectedEmployee" (onRowSelect)="fill_form_employee()">
+    <ng-template pTemplate="caption">
+      <p-button icon="pi pi-plus" (click)="show_form_employees = true"></p-button>
+    </ng-template>
+    <ng-template pTemplate="header">
+      <tr>
+        <th>ID</th>
+        <th>Nombre</th>
+        <th>Apellido</th>
+        <th>Dirección</th>
+        <th>Teléfono</th>
+        <th>Email</th>
+        <th>Nombre de Usuario</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-employee>
+      <tr [pSelectableRow]="employee">
+        <td>{{employee.id}}</td>
+        <td>{{employee.employee_name}}</td>
+        <td>{{employee.employee_lastname}}</td>
+        <td>{{employee.employee_address}}</td>
+        <td>{{employee.employee_telephone}}</td>
+        <td>{{employee.employee_birthday}}</td>
+        <td>{{employee.employee_username}}</td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>
+<p-dialog header="Datos del Empleado" [(visible)]="show_form_employees" [position]="'top'" [modal]="true">
+  <form style="text-align: center" [formGroup]="form_employee">
+    <div style="padding: 10px">
+      <input formControlName="employee_name" type="text" placeholder="Nombre del Empleado" pInputText>
+    </div>
+    <br>
+    <div style="padding: 10px">
+      <input formControlName="employee_lastname" type="text" placeholder="Apellido del Empleado" pInputText>
+    </div>
+    <br>
+    <div style="padding: 10px">
+      <input formControlName="employee_address" type="text" placeholder="Dirección del Empleado" pInputText>
+    </div>
+    <br>
+    <div style="padding: 10px">
+      <input formControlName="employee_telephone" type="text" placeholder="Teléfono del Empleado" pInputText>
+    </div>
+    <br>
+    <div style="padding: 10px">
+      <input formControlName="employee_birthday" type="text" placeholder="Fecha de Nacimiento" pInputText>
+    </div>
+    <br>
+    <div style="padding: 10px">
+      <input formControlName="employee_username" type="text" placeholder="Nombre de Usuario" pInputText>
+    </div>
+  </form>
+  <ng-template pTemplate="footer">
+    <p-button icon="pi pi-check" label="Guardar" (click)="save()" styleClass="p-button-text"></p-button>
+  </ng-template>
+</p-dialog>

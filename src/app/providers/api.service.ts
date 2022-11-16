@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
-import {Router, CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree} from '@angular/router';
 import {catchError, Observable, of} from "rxjs";
+import {Router} from "@angular/router";
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +14,8 @@ export class ApiService {
   options_login = {headers:this.header_login}
   header_token:any;
   options_token:any;
-  constructor(private http:HttpClient,private router:Router) { } //http is the alias to call it
+
+  constructor(private http:HttpClient, private router:Router) { } //http is the alias to call it
 
   login(data:any){
     let url = `${this.base_url+'/token'}`
@@ -27,13 +28,25 @@ export class ApiService {
     return this.http.get(url,this.options_token).pipe(catchError(this.handleError<any>()))
   }
 
+  post(end_point:string, data:any){
+    let url = `${this.base_url+'/'+end_point+'/'}`
+    let info = JSON.stringify(data)
+    return this.http.post(url, info, this.options_token).pipe(catchError(this.handleError<any>()))
+  }
+
+  update(end_point:string, data:any, id:any){
+    let url = `${this.base_url+'/'+end_point+'/'+id+'/'}`
+    let info = JSON.stringify(data)
+    return this.http.patch(url, info, this.options_token).pipe(catchError(this.handleError<any>()))
+  }
+
   add_token(token:string){
     this.header_token=new HttpHeaders().set('Content-Type', 'application/json')
-      .set('Authorizacion','Token '+token)
+      .set('Authorization','Token '+token)
     this.options_token ={headers:this.header_token}
   }
 
-  logOut(){
+  logout(){
     this.user = ''
     this.router.navigate(['/login'])
   }

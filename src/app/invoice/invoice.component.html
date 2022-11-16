@@ -1,1 +1,41 @@
-<p>invoice works!</p>
+<div style="padding: 30px">
+  <p-table [value]="invoices" selectionMode="single" [(selection)]="selectedInvoice" (onRowSelect)="fill_form_invoice()">
+    <ng-template pTemplate="caption">
+      <p-button icon="pi pi-plus" (click)="show_form_invoices = true"></p-button>
+    </ng-template>
+    <ng-template pTemplate="header">
+      <tr>
+        <th>ID</th>
+        <th>Cliente</th>
+        <th>Empleado</th>
+        <th>Número de Factura</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-invoice>
+      <tr [pSelectableRow]="invoice">
+        <td>{{invoice.id}}</td>
+        <td>{{invoice.client_id}}</td>
+        <td>{{invoice.employee_id}}</td>
+        <td>{{invoice.invoice_number}}</td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>
+<p-dialog header="Datos de la Factura" [(visible)]="show_form_invoices" [position]="'top'" [modal]="true">
+  <form style="text-align: center" [formGroup]="form_invoice">
+    <div style="padding: 10px">
+      <input formControlName="client_id" type="text" placeholder="Cliente" pInputText>
+    </div>
+    <br>
+    <div style="padding: 10px">
+      <input formControlName="employee_id" type="text" placeholder="Empleado" pInputText>
+    </div>
+    <br>
+    <div style="padding: 10px">
+      <input formControlName="invoice_number" type="text" placeholder="Número de Factura" pInputText>
+    </div>
+  </form>
+  <ng-template pTemplate="footer">
+    <p-button icon="pi pi-check" label="Guardar" (click)="save()" styleClass="p-button-text"></p-button>
+  </ng-template>
+</p-dialog>

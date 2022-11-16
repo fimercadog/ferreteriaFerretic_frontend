@@ -1,0 +1,62 @@
+<div style="padding: 30px">
+  <p-table [value]="purchases" selectionMode="single" [(selection)]="selectedPurchase" (onRowSelect)="fill_form_purchase()">
+    <ng-template pTemplate="caption">
+      <p-button icon="pi pi-plus" (click)="show_form_purchases = true"></p-button>
+    </ng-template>
+    <ng-template pTemplate="header">
+      <tr>
+        <th>ID</th>
+        <th>ID de Pedido</th>
+        <th>Fecha de Pedido</th>
+        <th>ID de Producto</th>
+        <th>Cantidad</th>
+        <th>Subtotal</th>
+        <th>Total</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-purchase>
+      <tr [pSelectableRow]="purchase">
+        <td>{{purchase.id}}</td>
+        <td>{{purchase.order_id}}</td>
+        <td>{{purchase.order_date}}</td>
+        <td>{{purchase.product_id}}</td>
+        <td>{{purchase.order_product_quantity}}</td>
+        <td>{{purchase.order_subtotal}}</td>
+        <td>{{purchase.order_total}}</td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>
+<p-dialog header="Datos de la compra" [(visible)]="show_form_purchases" [position]="'top'" [modal]="true">
+  <form style="text-align: center" [formGroup]="form_purchase">
+    <div style="padding: 10px">
+      <input formControlName="order_id" type="text" placeholder="ID del Pedido" pInputText>
+    </div>
+    <br>
+    <div style="padding: 10px">
+      <input formControlName="order_date" type="text" placeholder="Fecha del Pedido" pInputText>
+    </div>
+    <br>
+    <div style="padding: 10px">
+      <input formControlName="product_id" type="text" placeholder="ID del Producto" pInputText>
+    </div>
+    <br>
+    <div class="field col-12 md:col-3">
+      <label style="display: block">Cantidad</label>
+      <p-inputNumber formControlName="purchase_product_quantity" [(ngModel)]="quantity" [showButtons]="true" buttonLayout="vertical" spinnerMode="vertical" inputId="vertical"
+                     decrementButtonClass="p-button-secondary" incrementButtonClass="p-button-secondary" incrementButtonIcon="pi pi-plus" decrementButtonIcon="pi pi-minus">
+      </p-inputNumber>
+    </div>
+    <br>
+    <div style="padding: 10px">
+      <input formControlName="order_subtotal" type="text" placeholder="Subtotal" pInputText>
+    </div>
+    <br>
+    <div style="padding: 10px">
+      <input formControlName="order_total" type="text" placeholder="Total" pInputText>
+    </div>
+  </form>
+  <ng-template pTemplate="footer">
+    <p-button icon="pi pi-check" label="Guardar" (click)="save()" styleClass="p-button-text"></p-button>
+  </ng-template>
+</p-dialog>
