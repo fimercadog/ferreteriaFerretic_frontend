@@ -7,6 +7,7 @@ import {FormBuilder} from "@angular/forms";
   templateUrl: './employee.component.html',
   styleUrls: ['./employee.component.css']
 })
+
 export class EmployeeComponent implements OnInit {
 
   employees:any = []
@@ -18,7 +19,8 @@ export class EmployeeComponent implements OnInit {
     employee_address:[''],
     employee_telephone:[''],
     employee_birthday:[''],
-    employee_username:['']
+    employee_username:[''],
+    employee_password:['']
   })
   selectedEmployee: any;
 
@@ -77,7 +79,8 @@ export class EmployeeComponent implements OnInit {
       employee_address: this.selectedEmployee.employee_address,
       employee_telephone: this.selectedEmployee.employee_telephone,
       employee_birthday: this.selectedEmployee.employee_birthday,
-      employee_username: this.selectedEmployee.employee_username
+      employee_username: this.selectedEmployee.employee_username,
+      employee_password: this.selectedEmployee.employee_password
     })
     this.show_form_employees = true;
   }

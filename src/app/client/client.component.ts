@@ -88,4 +88,9 @@ export class ClientComponent implements OnInit {
       this.save_client()
     }
   }
+
+  clean_form(){
+    this.form_client.reset()
+    this.show_form_clients = false
+  }
 }
