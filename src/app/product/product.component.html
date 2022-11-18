@@ -5,11 +5,11 @@
     </ng-template>
     <ng-template pTemplate="header">
       <tr>
-        <th>ID</th>
-        <th>Nombre</th>
-        <th>Descripción</th>
-        <th>Precio</th>
-        <th>Stock</th>
+        <th pSortableColumn="id">ID <p-sortIcon field="id"></p-sortIcon></th>
+        <th pSortableColumn="product_name">Nombre <p-sortIcon field="product_name"></p-sortIcon></th>
+        <th pSortableColumn="product_description">Descripción< <p-sortIcon field="product_description"></p-sortIcon>/th>
+        <th pSortableColumn="product_price">Precio <p-sortIcon field="product_price"></p-sortIcon></th>
+        <th pSortableColumn="product_stock">Stock <p-sortIcon field="product_stock"></p-sortIcon></th>
       </tr>
     </ng-template>
     <ng-template pTemplate="body" let-product>
@@ -48,6 +48,7 @@
     </div>
   </form>
   <ng-template pTemplate="footer">
+    <p-button icon="pi pi-check" label="Cancelar" (click)="clean_form()" styleClass="p-button-text"></p-button>
     <p-button icon="pi pi-check" label="Guardar" (click)="save()" styleClass="p-button-text"></p-button>
   </ng-template>
 </p-dialog>

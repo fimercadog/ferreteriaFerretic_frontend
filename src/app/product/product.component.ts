@@ -87,4 +87,9 @@ export class ProductComponent implements OnInit {
       this.save_product()
     }
   }
+
+  clean_form(){
+    this.form_product.reset()
+    this.show_form_products = false
+  }
 }

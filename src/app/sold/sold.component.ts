@@ -9,6 +9,8 @@ import {FormBuilder} from "@angular/forms";
 })
 export class SoldComponent implements OnInit {
 
+  invoices:any = []
+  products:any = []
   sales:any = []
   show_form_sales: boolean = false;
   form_sale = this.fb.group({
@@ -26,11 +28,33 @@ export class SoldComponent implements OnInit {
   constructor(private api:ApiService, private fb:FormBuilder) { }
 
   ngOnInit(): void {
+    this.get_invoices()
+    this.get_products()
     this.get_sales()
   }
 
+  get_invoices(){
+    this.api.get('invoice')
+      .subscribe(
+        data=>{
+          this.invoices = data
+          console.log(data)
+        }
+      )
+  }
+
+  get_products(){
+    this.api.get('product')
+      .subscribe(
+        data=>{
+          this.products = data
+          console.log(data)
+        }
+      )
+  }
+
   get_sales(){
-    this.api.get('sale')
+    this.api.get('sold')
       .subscribe(
         data=>{
           this.sales = data
@@ -40,7 +64,7 @@ export class SoldComponent implements OnInit {
   }
 
   save_sale() {
-    this.api.post('sale', this.form_sale.value)
+    this.api.post('sold', this.form_sale.value)
       .subscribe(
         data=>{
           if(data != undefined){
@@ -55,7 +79,7 @@ export class SoldComponent implements OnInit {
   }
 
   update_sale() {
-    this.api.update('sale', this.form_sale.value, this.form_sale.value['id'])
+    this.api.update('sold', this.form_sale.value, this.form_sale.value['id'])
       .subscribe(
         data=>{
           if(data != undefined){
@@ -73,9 +97,9 @@ export class SoldComponent implements OnInit {
     this.form_sale.reset()
     this.form_sale.patchValue({
       id:this.selectedSale.id,
-      invoice_id: this.selectedSale.invoice_id,
+      invoice_id: this.selectedSale.invoice.id,
       invoice_date: this.selectedSale.invoice_date,
-      product_id: this.selectedSale.product_id,
+      product_id: this.selectedSale.product.id,
       invoice_product_quantity: this.selectedSale.invoice_product_quantity,
       invoice_subtotal: this.selectedSale.invoice_subtotal,
       invoice_total: this.selectedSale.invoice_total,
@@ -89,5 +113,10 @@ export class SoldComponent implements OnInit {
     }else {
       this.save_sale()
     }
+  }
+
+  clean_form(){
+    this.form_sale.reset()
+    this.show_form_sales = false
   }
 }

@@ -5,13 +5,13 @@
     </ng-template>
     <ng-template pTemplate="header">
       <tr>
-        <th>ID</th>
-        <th>Nombre</th>
-        <th>Apellido</th>
-        <th>Dirección</th>
-        <th>Teléfono</th>
-        <th>Email</th>
-        <th>Nombre de Usuario</th>
+        <th pSortableColumn="id">ID <p-sortIcon field="id"></p-sortIcon></th>
+        <th pSortableColumn="employee_name">Nombre <p-sortIcon field="employee_name"></p-sortIcon></th>
+        <th pSortableColumn="employee_lastname">Apellido <p-sortIcon field="employee_lastname"></p-sortIcon></th>
+        <th pSortableColumn="employee_address">Dirección <p-sortIcon field="employee_address"></p-sortIcon></th>
+        <th pSortableColumn="employee_telephone">Teléfono <p-sortIcon field="employee_telephone"></p-sortIcon></th>
+        <th pSortableColumn="employee_birthday">Fecha de Nacimiento <p-sortIcon field="employee_birthday"></p-sortIcon></th>
+        <th pSortableColumn="employee_username">Nombre de Usuario <p-sortIcon field="employee_username"></p-sortIcon></th>
       </tr>
     </ng-template>
     <ng-template pTemplate="body" let-employee>
@@ -58,6 +58,7 @@
     </div>
   </form>
   <ng-template pTemplate="footer">
+    <p-button icon="pi pi-check" label="Cancelar" (click)="clean_form()" styleClass="p-button-text"></p-button>
     <p-button icon="pi pi-check" label="Guardar" (click)="save()" styleClass="p-button-text"></p-button>
   </ng-template>
 </p-dialog>

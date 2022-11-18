@@ -5,17 +5,17 @@
     </ng-template>
     <ng-template pTemplate="header">
       <tr>
-        <th>ID</th>
-        <th>Cliente</th>
-        <th>Empleado</th>
-        <th>Número de Factura</th>
+        <th pSortableColumn="id">ID <p-sortIcon field="id"></p-sortIcon></th>
+        <th pSortableColumn="client.client_name">Proveedor <p-sortIcon field="client.client_name"></p-sortIcon></th>
+        <th pSortableColumn="employee.employee_name">Empleado <p-sortIcon field="employee.employee_name"></p-sortIcon></th>
+        <th pSortableColumn="order_number">Número de Pedido <p-sortIcon field="order_number"></p-sortIcon></th>
       </tr>
     </ng-template>
     <ng-template pTemplate="body" let-invoice>
       <tr [pSelectableRow]="invoice">
         <td>{{invoice.id}}</td>
-        <td>{{invoice.client_id}}</td>
-        <td>{{invoice.employee_id}}</td>
+        <td>{{invoice.client.client_name}}</td>
+        <td>{{invoice.employee.employee_name}}</td>
         <td>{{invoice.invoice_number}}</td>
       </tr>
     </ng-template>
@@ -24,11 +24,11 @@
 <p-dialog header="Datos de la Factura" [(visible)]="show_form_invoices" [position]="'top'" [modal]="true">
   <form style="text-align: center" [formGroup]="form_invoice">
     <div style="padding: 10px">
-      <input formControlName="client_id" type="text" placeholder="Cliente" pInputText>
+      <p-dropdown appendTo="body" [options]="clients" formControlName="client_id" optionLabel="client_name" optionValue="id"></p-dropdown>
     </div>
     <br>
     <div style="padding: 10px">
-      <input formControlName="employee_id" type="text" placeholder="Empleado" pInputText>
+      <p-dropdown appendTo="body" [options]="employees" formControlName="employee_id" optionLabel="employee_name" optionValue="id"></p-dropdown>
     </div>
     <br>
     <div style="padding: 10px">
@@ -36,6 +36,7 @@
     </div>
   </form>
   <ng-template pTemplate="footer">
+    <p-button icon="pi pi-check" label="Cancelar" (click)="clean_form()" styleClass="p-button-text"></p-button>
     <p-button icon="pi pi-check" label="Guardar" (click)="save()" styleClass="p-button-text"></p-button>
   </ng-template>
 </p-dialog>

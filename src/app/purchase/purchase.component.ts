@@ -9,6 +9,8 @@ import {FormBuilder} from "@angular/forms";
 })
 export class PurchaseComponent implements OnInit {
 
+  orders:any = []
+  products:any = []
   purchases:any = []
   show_form_purchases: boolean = false;
   form_purchase = this.fb.group({
@@ -26,7 +28,29 @@ export class PurchaseComponent implements OnInit {
   constructor(private api:ApiService, private fb:FormBuilder) { }
 
   ngOnInit(): void {
+    this.get_orders()
+    this.get_products()
     this.get_purchases()
+  }
+
+  get_orders(){
+    this.api.get('order')
+      .subscribe(
+        data=>{
+          this.orders = data
+          console.log(data)
+        }
+      )
+  }
+
+  get_products(){
+    this.api.get('product')
+      .subscribe(
+        data=>{
+          this.products = data
+          console.log(data)
+        }
+      )
   }
 
   get_purchases(){
@@ -73,9 +97,9 @@ export class PurchaseComponent implements OnInit {
     this.form_purchase.reset()
     this.form_purchase.patchValue({
       id:this.selectedPurchase.id,
-      order_id: this.selectedPurchase.order_id,
+      order_id: this.selectedPurchase.order.id,
       order_date: this.selectedPurchase.order_date,
-      product_id: this.selectedPurchase.product_id,
+      product_id: this.selectedPurchase.product.id,
       order_product_quantity: this.selectedPurchase.order_product_quantity,
       order_subtotal: this.selectedPurchase.order_subtotal,
       order_total: this.selectedPurchase.order_total,
@@ -89,5 +113,10 @@ export class PurchaseComponent implements OnInit {
     }else {
       this.save_purchase()
     }
+  }
+
+  clean_form(){
+    this.form_purchase.reset()
+    this.show_form_purchases = false
   }
 }

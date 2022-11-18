@@ -9,6 +9,8 @@ import {FormBuilder} from "@angular/forms";
 })
 export class InvoiceComponent implements OnInit {
 
+  employees:any = []
+  clients:any = []
   invoices:any = []
   show_form_invoices: boolean = false;
   form_invoice = this.fb.group({
@@ -22,7 +24,29 @@ export class InvoiceComponent implements OnInit {
   constructor(private api:ApiService, private fb:FormBuilder) { }
 
   ngOnInit(): void {
+    this.get_clients()
+    this.get_employees()
     this.get_invoices()
+  }
+
+  get_clients(){
+    this.api.get('client')
+      .subscribe(
+        data=>{
+          this.clients = data
+          console.log(data)
+        }
+      )
+  }
+
+  get_employees(){
+    this.api.get('employee')
+      .subscribe(
+        data=>{
+          this.employees = data
+          console.log(data)
+        }
+      )
   }
 
   get_invoices(){
@@ -69,8 +93,8 @@ export class InvoiceComponent implements OnInit {
     this.form_invoice.reset()
     this.form_invoice.patchValue({
       id:this.selectedInvoice.id,
-      client_id: this.selectedInvoice.client_id,
-      employee_id: this.selectedInvoice.employee_id,
+      client_id: this.selectedInvoice.client.id,
+      employee_id: this.selectedInvoice.employee.id,
       invoice_number: this.selectedInvoice.invoice_number,
     })
     this.show_form_invoices = true;
@@ -82,5 +106,10 @@ export class InvoiceComponent implements OnInit {
     }else {
       this.save_invoice()
     }
+  }
+
+  clean_form(){
+    this.form_invoice.reset()
+    this.show_form_invoices = false
   }
 }

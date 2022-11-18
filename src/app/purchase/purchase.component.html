@@ -5,21 +5,21 @@
     </ng-template>
     <ng-template pTemplate="header">
       <tr>
-        <th>ID</th>
-        <th>ID de Pedido</th>
-        <th>Fecha de Pedido</th>
-        <th>ID de Producto</th>
-        <th>Cantidad</th>
-        <th>Subtotal</th>
-        <th>Total</th>
+        <th pSortableColumn="id">ID <p-sortIcon field="id"></p-sortIcon></th>
+        <th pSortableColumn="order.order_number">Número de Pedido< <p-sortIcon field="order.order_number"></p-sortIcon>/th>
+        <th pSortableColumn="order_date">Fecha de Pedido <p-sortIcon field="order_date"></p-sortIcon></th>
+        <th pSortableColumn="product.product_name">Producto <p-sortIcon field="product.product_name"></p-sortIcon></th>
+        <th pSortableColumn="order_product_quantity">Cantidad <p-sortIcon field="order_product_quantity"></p-sortIcon></th>
+        <th pSortableColumn="order_subtotal">Subtotal <p-sortIcon field="order_subtotal"></p-sortIcon></th>
+        <th pSortableColumn="order_total">Total <p-sortIcon field="order_total"></p-sortIcon></th>
       </tr>
     </ng-template>
     <ng-template pTemplate="body" let-purchase>
       <tr [pSelectableRow]="purchase">
         <td>{{purchase.id}}</td>
-        <td>{{purchase.order_id}}</td>
+        <td>{{purchase.order.order_number}}</td>
         <td>{{purchase.order_date}}</td>
-        <td>{{purchase.product_id}}</td>
+        <td>{{purchase.product.product_name}}</td>
         <td>{{purchase.order_product_quantity}}</td>
         <td>{{purchase.order_subtotal}}</td>
         <td>{{purchase.order_total}}</td>
@@ -30,7 +30,7 @@
 <p-dialog header="Datos de la compra" [(visible)]="show_form_purchases" [position]="'top'" [modal]="true">
   <form style="text-align: center" [formGroup]="form_purchase">
     <div style="padding: 10px">
-      <input formControlName="order_id" type="text" placeholder="ID del Pedido" pInputText>
+      <p-dropdown appendTo="body" [options]="orders" formControlName="order_id" optionLabel="order_number" optionValue="id"></p-dropdown>
     </div>
     <br>
     <div style="padding: 10px">
@@ -38,14 +38,18 @@
     </div>
     <br>
     <div style="padding: 10px">
-      <input formControlName="product_id" type="text" placeholder="ID del Producto" pInputText>
+      <p-dropdown appendTo="body" [options]="products" formControlName="product_id" optionLabel="product_name" optionValue="id"></p-dropdown>
     </div>
     <br>
-    <div class="field col-12 md:col-3">
+    <!--<div class="field col-12 md:col-3">
       <label style="display: block">Cantidad</label>
       <p-inputNumber formControlName="purchase_product_quantity" [(ngModel)]="quantity" [showButtons]="true" buttonLayout="vertical" spinnerMode="vertical" inputId="vertical"
                      decrementButtonClass="p-button-secondary" incrementButtonClass="p-button-secondary" incrementButtonIcon="pi pi-plus" decrementButtonIcon="pi pi-minus">
       </p-inputNumber>
+    </div>
+    <br>-->
+    <div style="padding: 10px">
+      <input formControlName="order_product_quantity" type="text" placeholder="Cantidad" pInputText>
     </div>
     <br>
     <div style="padding: 10px">
@@ -57,6 +61,7 @@
     </div>
   </form>
   <ng-template pTemplate="footer">
+    <p-button icon="pi pi-check" label="Cancelar" (click)="clean_form()" styleClass="p-button-text"></p-button>
     <p-button icon="pi pi-check" label="Guardar" (click)="save()" styleClass="p-button-text"></p-button>
   </ng-template>
 </p-dialog>

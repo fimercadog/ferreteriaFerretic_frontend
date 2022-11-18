@@ -5,11 +5,11 @@
     </ng-template>
     <ng-template pTemplate="header">
       <tr>
-        <th>ID</th>
-        <th>Nombre</th>
-        <th>Dirección</th>
-        <th>Teléfono</th>
-        <th>Email</th>
+        <th pSortableColumn="id">ID <p-sortIcon field="id"></p-sortIcon></th>
+        <th pSortableColumn="vendor_name">Nombre <p-sortIcon field="vendor_name"></p-sortIcon></th>
+        <th pSortableColumn="vendor_address">Dirección <p-sortIcon field="vendor_address"></p-sortIcon></th>
+        <th pSortableColumn="vendor_telephone">Teléfono <p-sortIcon field="vendor_telephone"></p-sortIcon></th>
+        <th pSortableColumn="vendor_email">Email <p-sortIcon field="vendor_email"></p-sortIcon></th>
 
       </tr>
     </ng-template>
@@ -43,6 +43,7 @@
     </div>
   </form>
   <ng-template pTemplate="footer">
+    <p-button icon="pi pi-check" label="Cancelar" (click)="clean_form()" styleClass="p-button-text"></p-button>
     <p-button icon="pi pi-check" label="Guardar" (click)="save()" styleClass="p-button-text"></p-button>
   </ng-template>
 </p-dialog>

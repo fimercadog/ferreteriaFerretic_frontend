@@ -5,24 +5,24 @@
     </ng-template>
     <ng-template pTemplate="header">
       <tr>
-        <th>ID</th>
-        <th>ID de Venta</th>
-        <th>Fecha de Venta</th>
-        <th>ID de Producto</th>
-        <th>Cantidad</th>
-        <th>Subtotal</th>
-        <th>Total</th>
+        <th pSortableColumn="id">ID <p-sortIcon field="id"></p-sortIcon></th>
+        <th pSortableColumn="invoice.invoice_number">Número de Factura< <p-sortIcon field="invoice.invoice_number"></p-sortIcon>/th>
+        <th pSortableColumn="invoice_date">Fecha de Pedido <p-sortIcon field="invoice_date"></p-sortIcon></th>
+        <th pSortableColumn="product.product_name">Producto <p-sortIcon field="product.product_name"></p-sortIcon></th>
+        <th pSortableColumn="invoice_product_quantity">Cantidad <p-sortIcon field="invoice_product_quantity"></p-sortIcon></th>
+        <th pSortableColumn="invoice_subtotal">Subtotal <p-sortIcon field="invoice_subtotal"></p-sortIcon></th>
+        <th pSortableColumn="invoice_total">Total <p-sortIcon field="invoice_total"></p-sortIcon></th>
       </tr>
     </ng-template>
-    <ng-template pTemplate="body" let-sale>
-      <tr [pSelectableRow]="sale">
-        <td>{{sale.id}}</td>
-        <td>{{sale.invoice_id}}</td>
-        <td>{{sale.invoice_date}}</td>
-        <td>{{sale.product_id}}</td>
-        <td>{{sale.invoice_product_quantity}}</td>
-        <td>{{sale.invoice_subtotal}}</td>
-        <td>{{sale.invoice_total}}</td>
+    <ng-template pTemplate="body" let-purchase>
+      <tr [pSelectableRow]="purchase">
+        <td>{{purchase.id}}</td>
+        <td>{{purchase.invoice.invoice_number}}</td>
+        <td>{{purchase.invoice_date}}</td>
+        <td>{{purchase.product.product_name}}</td>
+        <td>{{purchase.invoice_product_quantity}}</td>
+        <td>{{purchase.invoice_subtotal}}</td>
+        <td>{{purchase.invoice_total}}</td>
       </tr>
     </ng-template>
   </p-table>
@@ -30,22 +30,26 @@
 <p-dialog header="Datos de la venta" [(visible)]="show_form_sales" [position]="'top'" [modal]="true">
   <form style="text-align: center" [formGroup]="form_sale">
     <div style="padding: 10px">
-      <input formControlName="invoice_id" type="text" placeholder="ID del Venta" pInputText>
+      <p-dropdown appendTo="body" [options]="invoices" formControlName="invoice_id" optionLabel="invoice_number" optionValue="id"></p-dropdown>
     </div>
     <br>
     <div style="padding: 10px">
-      <input formControlName="invoice_date" type="text" placeholder="Fecha del Venta" pInputText>
+      <input formControlName="invoice_date" type="text" placeholder="Fecha de la Venta" pInputText>
     </div>
     <br>
     <div style="padding: 10px">
-      <input formControlName="product_id" type="text" placeholder="ID del Producto" pInputText>
+      <p-dropdown appendTo="body" [options]="products" formControlName="product_id" optionLabel="product_name" optionValue="id"></p-dropdown>
     </div>
     <br>
-    <div class="field col-12 md:col-3">
+    <!--<div class="field col-12 md:col-3">
       <label style="display: block">Cantidad</label>
-      <p-inputNumber formControlName="sold_product_quantity" [(ngModel)]="quantity" [showButtons]="true" buttonLayout="vertical" spinnerMode="vertical" inputId="vertical"
+      <p-inputNumber formControlName="purchase_product_quantity" [(ngModel)]="quantity" [showButtons]="true" buttonLayout="vertical" spinnerMode="vertical" inputId="vertical"
                      decrementButtonClass="p-button-secondary" incrementButtonClass="p-button-secondary" incrementButtonIcon="pi pi-plus" decrementButtonIcon="pi pi-minus">
       </p-inputNumber>
+    </div>
+    <br>-->
+    <div style="padding: 10px">
+      <input formControlName="invoice_product_quantity" type="text" placeholder="Cantidad" pInputText>
     </div>
     <br>
     <div style="padding: 10px">
@@ -53,10 +57,11 @@
     </div>
     <br>
     <div style="padding: 10px">
-      <input formControlName="order_total" type="text" placeholder="Total" pInputText>
+      <input formControlName="invoice_total" type="text" placeholder="Total" pInputText>
     </div>
   </form>
   <ng-template pTemplate="footer">
+    <p-button icon="pi pi-check" label="Cancelar" (click)="clean_form()" styleClass="p-button-text"></p-button>
     <p-button icon="pi pi-check" label="Guardar" (click)="save()" styleClass="p-button-text"></p-button>
   </ng-template>
 </p-dialog>

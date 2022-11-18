@@ -9,6 +9,8 @@ import {FormBuilder} from "@angular/forms";
 })
 export class OrderComponent implements OnInit {
 
+  employees:any = []
+  vendors:any = []
   orders:any = []
   show_form_orders: boolean = false;
   form_order = this.fb.group({
@@ -22,7 +24,29 @@ export class OrderComponent implements OnInit {
   constructor(private api:ApiService, private fb:FormBuilder) { }
 
   ngOnInit(): void {
+    this.get_vendors()
+    this.get_employees()
     this.get_orders()
+  }
+
+  get_vendors(){
+    this.api.get('vendor')
+      .subscribe(
+        data=>{
+          this.vendors = data
+          console.log(data)
+        }
+      )
+  }
+
+  get_employees(){
+    this.api.get('employee')
+      .subscribe(
+        data=>{
+          this.employees = data
+          console.log(data)
+        }
+      )
   }
 
   get_orders(){
@@ -69,8 +93,8 @@ export class OrderComponent implements OnInit {
     this.form_order.reset()
     this.form_order.patchValue({
       id:this.selectedOrder.id,
-      vendor_id: this.selectedOrder.vendor_id,
-      employee_id: this.selectedOrder.employee_id,
+      vendor_id: this.selectedOrder.vendor.id,
+      employee_id: this.selectedOrder.employee.id,
       order_number: this.selectedOrder.order_number,
     })
     this.show_form_orders = true;
@@ -82,5 +106,10 @@ export class OrderComponent implements OnInit {
     }else {
       this.save_order()
     }
+  }
+
+  clean_form(){
+    this.form_order.reset()
+    this.show_form_orders = false
   }
 }

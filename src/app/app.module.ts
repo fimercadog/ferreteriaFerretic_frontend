@@ -29,6 +29,8 @@ import {DialogModule} from "primeng/dialog";
 import {InputNumberModule} from 'primeng/inputnumber';
 import {InputTextareaModule} from 'primeng/inputtextarea';
 import {CalendarModule} from 'primeng/calendar';
+import {DropdownModule} from 'primeng/dropdown';
+import {AutoCompleteModule} from 'primeng/autocomplete';
 
 
 
@@ -61,7 +63,9 @@ import {CalendarModule} from 'primeng/calendar';
     DialogModule,
     InputNumberModule,
     InputTextareaModule,
-    CalendarModule
+    CalendarModule,
+    DropdownModule,
+    AutoCompleteModule
   ],
   providers: [ApiService, AuthGuard],
   bootstrap: [AppComponent]

@@ -92,4 +92,9 @@ export class EmployeeComponent implements OnInit {
       this.save_employee()
     }
   }
+
+  clean_form(){
+    this.form_employee.reset()
+    this.show_form_employees = false
+  }
 }

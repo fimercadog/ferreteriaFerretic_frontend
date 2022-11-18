@@ -5,12 +5,12 @@
     </ng-template>
     <ng-template pTemplate="header">
       <tr>
-        <th>ID</th>
-        <th>Nombre</th>
-        <th>Apellido</th>
-        <th>Dirección</th>
-        <th>Teléfono</th>
-        <th>Email</th>
+        <th pSortableColumn="id">ID <p-sortIcon field="id"></p-sortIcon></th>
+        <th pSortableColumn="client_name">Nombre <p-sortIcon field="client_name"></p-sortIcon></th>
+        <th pSortableColumn="client_lastname">Apellido <p-sortIcon field="client_lastname"></p-sortIcon></th>
+        <th pSortableColumn="client_address">Dirección <p-sortIcon field="client_address"></p-sortIcon></th>
+        <th pSortableColumn="client_telephone">Teléfono <p-sortIcon field="client_telephone"></p-sortIcon></th>
+        <th pSortableColumn="client_email">Email <p-sortIcon field="client_email"></p-sortIcon></th>
       </tr>
     </ng-template>
     <ng-template pTemplate="body" let-client>

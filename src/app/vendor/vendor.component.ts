@@ -85,4 +85,9 @@ export class VendorComponent implements OnInit {
       this.save_vendor()
     }
   }
+
+  clean_form(){
+    this.form_vendor.reset()
+    this.show_form_vendors = false
+  }
 }
