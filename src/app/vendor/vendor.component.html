@@ -5,6 +5,7 @@
     </ng-template>
     <ng-template pTemplate="header">
       <tr>
+        <th></th>
         <th pSortableColumn="id">ID <p-sortIcon field="id"></p-sortIcon></th>
         <th pSortableColumn="vendor_name">Nombre <p-sortIcon field="vendor_name"></p-sortIcon></th>
         <th pSortableColumn="vendor_address">Dirección <p-sortIcon field="vendor_address"></p-sortIcon></th>
@@ -13,13 +14,14 @@
 
       </tr>
     </ng-template>
-    <ng-template pTemplate="body" let-order>
-      <tr [pSelectableRow]="order">
-        <td>{{order.id}}</td>
-        <td>{{order.vendor_name}}</td>
-        <td>{{order.vendor_address}}</td>
-        <td>{{order.vendor_telephone}}</td>
-        <td>{{order.vendor_email}}</td>
+    <ng-template pTemplate="body" let-vendor>
+      <tr [pSelectableRow]="vendor">
+        <td><i [style]="{'color':vendor.vendor_enabled?'green':'red'}" class="pi pi-circle-fill"></i> </td>
+        <td>{{vendor.id}}</td>
+        <td>{{vendor.vendor_name}}</td>
+        <td>{{vendor.vendor_address}}</td>
+        <td>{{vendor.vendor_telephone}}</td>
+        <td>{{vendor.vendor_email}}</td>
       </tr>
     </ng-template>
   </p-table>

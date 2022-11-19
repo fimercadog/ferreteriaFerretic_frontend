@@ -20,7 +20,8 @@ export class PurchaseComponent implements OnInit {
     product_id:[''],
     order_product_quantity:[''],
     order_subtotal:[''],
-    order_total:['']
+    order_total:[''],
+    purchase_enabled:[''],
   })
   selectedPurchase: any;
   quantity: any;
@@ -103,6 +104,7 @@ export class PurchaseComponent implements OnInit {
       order_product_quantity: this.selectedPurchase.order_product_quantity,
       order_subtotal: this.selectedPurchase.order_subtotal,
       order_total: this.selectedPurchase.order_total,
+      purchase_enabled: this.selectedPurchase.purchase_enabled,
     })
     this.show_form_purchases = true;
   }

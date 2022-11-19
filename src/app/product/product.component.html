@@ -5,6 +5,7 @@
     </ng-template>
     <ng-template pTemplate="header">
       <tr>
+        <th></th>
         <th pSortableColumn="id">ID <p-sortIcon field="id"></p-sortIcon></th>
         <th pSortableColumn="product_name">Nombre <p-sortIcon field="product_name"></p-sortIcon></th>
         <th pSortableColumn="product_description">Descripción< <p-sortIcon field="product_description"></p-sortIcon>/th>
@@ -14,6 +15,7 @@
     </ng-template>
     <ng-template pTemplate="body" let-product>
       <tr [pSelectableRow]="product">
+        <td><i [style]="{'color':product.product_enabled?'green':'red'}" class="pi pi-circle-fill"></i> </td>
         <td>{{product.id}}</td>
         <td>{{product.product_name}}</td>
         <td>{{product.product_description}}</td>

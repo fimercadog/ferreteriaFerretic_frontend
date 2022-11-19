@@ -5,6 +5,7 @@
     </ng-template>
     <ng-template pTemplate="header">
       <tr>
+        <th></th>
         <th pSortableColumn="id">ID <p-sortIcon field="id"></p-sortIcon></th>
         <th pSortableColumn="invoice.invoice_number">Número de Factura< <p-sortIcon field="invoice.invoice_number"></p-sortIcon>/th>
         <th pSortableColumn="invoice_date">Fecha de Pedido <p-sortIcon field="invoice_date"></p-sortIcon></th>
@@ -14,15 +15,16 @@
         <th pSortableColumn="invoice_total">Total <p-sortIcon field="invoice_total"></p-sortIcon></th>
       </tr>
     </ng-template>
-    <ng-template pTemplate="body" let-purchase>
-      <tr [pSelectableRow]="purchase">
-        <td>{{purchase.id}}</td>
-        <td>{{purchase.invoice.invoice_number}}</td>
-        <td>{{purchase.invoice_date}}</td>
-        <td>{{purchase.product.product_name}}</td>
-        <td>{{purchase.invoice_product_quantity}}</td>
-        <td>{{purchase.invoice_subtotal}}</td>
-        <td>{{purchase.invoice_total}}</td>
+    <ng-template pTemplate="body" let-sold>
+      <tr [pSelectableRow]="sold">
+        <td><i [style]="{'color':sold.sold_enabled?'green':'red'}" class="pi pi-circle-fill"></i> </td>
+        <td>{{sold.id}}</td>
+        <td>{{sold.invoice.invoice_number}}</td>
+        <td>{{sold.invoice_date}}</td>
+        <td>{{sold.product.product_name}}</td>
+        <td>{{sold.invoice_product_quantity}}</td>
+        <td>{{sold.invoice_subtotal}}</td>
+        <td>{{sold.invoice_total}}</td>
       </tr>
     </ng-template>
   </p-table>

@@ -5,6 +5,7 @@
     </ng-template>
     <ng-template pTemplate="header">
       <tr>
+        <th></th>
         <th pSortableColumn="id">ID <p-sortIcon field="id"></p-sortIcon></th>
         <th pSortableColumn="order.order_number">Número de Pedido< <p-sortIcon field="order.order_number"></p-sortIcon>/th>
         <th pSortableColumn="order_date">Fecha de Pedido <p-sortIcon field="order_date"></p-sortIcon></th>
@@ -16,6 +17,7 @@
     </ng-template>
     <ng-template pTemplate="body" let-purchase>
       <tr [pSelectableRow]="purchase">
+        <td><i [style]="{'color':purchase.purchase_enabled?'green':'red'}" class="pi pi-circle-fill"></i> </td>
         <td>{{purchase.id}}</td>
         <td>{{purchase.order.order_number}}</td>
         <td>{{purchase.order_date}}</td>

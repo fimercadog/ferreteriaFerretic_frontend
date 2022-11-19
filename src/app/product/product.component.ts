@@ -16,7 +16,8 @@ export class ProductComponent implements OnInit {
     product_name:[''],
     product_description:[''],
     product_price:[''],
-    product_stock:['']
+    product_stock:[''],
+    product_enabled: ['']
   })
   selectedProduct: any;
   price: any;
@@ -76,6 +77,7 @@ export class ProductComponent implements OnInit {
       product_description: this.selectedProduct.product_description,
       product_price: this.selectedProduct.product_price,
       product_stock: this.selectedProduct.product_stock,
+      product_enabled: this.selectedProduct.product_enabled,
     })
     this.show_form_products = true;
   }

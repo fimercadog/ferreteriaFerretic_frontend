@@ -20,7 +20,8 @@ export class EmployeeComponent implements OnInit {
     employee_telephone:[''],
     employee_birthday:[''],
     employee_username:[''],
-    employee_password:['']
+    employee_password:[''],
+    employee_enabled:['']
   })
   selectedEmployee: any;
 
@@ -80,7 +81,8 @@ export class EmployeeComponent implements OnInit {
       employee_telephone: this.selectedEmployee.employee_telephone,
       employee_birthday: this.selectedEmployee.employee_birthday,
       employee_username: this.selectedEmployee.employee_username,
-      employee_password: this.selectedEmployee.employee_password
+      employee_password: this.selectedEmployee.employee_password,
+      employee_enabled:this.selectedEmployee.employee_enabled,
     })
     this.show_form_employees = true;
   }

@@ -20,7 +20,8 @@ export class SoldComponent implements OnInit {
     product_id:[''],
     invoice_product_quantity:[''],
     invoice_subtotal:[''],
-    invoice_total:['']
+    invoice_total:[''],
+    sold_enabled:[''],
   })
   selectedSale: any;
   quantity: any;
@@ -103,6 +104,7 @@ export class SoldComponent implements OnInit {
       invoice_product_quantity: this.selectedSale.invoice_product_quantity,
       invoice_subtotal: this.selectedSale.invoice_subtotal,
       invoice_total: this.selectedSale.invoice_total,
+      sold_enabled: this.selectedSale.sold_enabled,
     })
     this.show_form_sales = true;
   }

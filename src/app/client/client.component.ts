@@ -19,6 +19,7 @@ export class ClientComponent implements OnInit {
     client_address:[''],
     client_telephone:[''],
     client_email:[''],
+    client_enabled:['']
   })
   selectedClient: any;
 
@@ -76,7 +77,8 @@ export class ClientComponent implements OnInit {
       client_lastname: this.selectedClient.client_lastname,
       client_address: this.selectedClient.client_address,
       client_telephone: this.selectedClient.client_telephone,
-      client_email: this.selectedClient.client_email
+      client_email: this.selectedClient.client_email,
+      client_enabled: this.selectedClient.client_enabled
     })
     this.show_form_clients = true;
   }

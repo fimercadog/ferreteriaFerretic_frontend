@@ -17,7 +17,8 @@ export class OrderComponent implements OnInit {
     id:[''],
     vendor_id:[''],
     employee_id:[''],
-    order_number:['']
+    order_number:[''],
+    order_enabled: ['']
   })
   selectedOrder: any;
 
@@ -96,6 +97,7 @@ export class OrderComponent implements OnInit {
       vendor_id: this.selectedOrder.vendor.id,
       employee_id: this.selectedOrder.employee.id,
       order_number: this.selectedOrder.order_number,
+      order_enabled: this.selectedOrder.order_enabled
     })
     this.show_form_orders = true;
   }

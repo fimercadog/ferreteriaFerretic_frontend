@@ -17,7 +17,8 @@ export class InvoiceComponent implements OnInit {
     id:[''],
     client_id:[''],
     employee_id:[''],
-    invoice_number:['']
+    invoice_number:[''],
+    invoice_enabled:[''],
   })
   selectedInvoice: any;
 
@@ -96,6 +97,7 @@ export class InvoiceComponent implements OnInit {
       client_id: this.selectedInvoice.client.id,
       employee_id: this.selectedInvoice.employee.id,
       invoice_number: this.selectedInvoice.invoice_number,
+      invoice_enabled: this.selectedInvoice.invoice_enabled
     })
     this.show_form_invoices = true;
   }

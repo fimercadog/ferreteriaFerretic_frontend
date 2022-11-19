@@ -5,14 +5,16 @@
     </ng-template>
     <ng-template pTemplate="header">
       <tr>
+        <th></th>
         <th pSortableColumn="id">ID <p-sortIcon field="id"></p-sortIcon></th>
-        <th pSortableColumn="vendor.vendor_name">Proveedor <p-sortIcon field="vendor.vendor_name"></p-sortIcon></th>
+        <th pSortableColumn="vendor.vendor_name">Cliente <p-sortIcon field="vendor.vendor_name"></p-sortIcon></th>
         <th pSortableColumn="employee.employee_name">Empleado <p-sortIcon field="employee.employee_name"></p-sortIcon></th>
         <th pSortableColumn="order_number">Número de Pedido <p-sortIcon field="order_number"></p-sortIcon></th>
       </tr>
     </ng-template>
     <ng-template pTemplate="body" let-order>
       <tr [pSelectableRow]="order">
+        <td><i [style]="{'color':order.order_enabled?'green':'red'}" class="pi pi-circle-fill"></i> </td>
         <td>{{order.id}}</td>
         <td>{{order.vendor.vendor_name}}</td>
         <td>{{order.employee.employee_name}}</td>

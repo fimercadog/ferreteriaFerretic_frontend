@@ -16,7 +16,8 @@ export class VendorComponent implements OnInit {
     vendor_name:[''],
     vendor_address:[''],
     vendor_telephone:[''],
-    vendor_email:['']
+    vendor_email:[''],
+    vendor_enabled:['']
   })
   selectedVendor: any;
 
@@ -74,6 +75,7 @@ export class VendorComponent implements OnInit {
       vendor_address: this.selectedVendor.vendor_address,
       vendor_telephone: this.selectedVendor.vendor_telephone,
       vendor_email: this.selectedVendor.vendor_email,
+      vendor_enabled: this.selectedVendor.vendor_enabled,
     })
     this.show_form_vendors = true;
   }

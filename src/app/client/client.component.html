@@ -5,6 +5,7 @@
     </ng-template>
     <ng-template pTemplate="header">
       <tr>
+        <th></th>
         <th pSortableColumn="id">ID <p-sortIcon field="id"></p-sortIcon></th>
         <th pSortableColumn="client_name">Nombre <p-sortIcon field="client_name"></p-sortIcon></th>
         <th pSortableColumn="client_lastname">Apellido <p-sortIcon field="client_lastname"></p-sortIcon></th>
@@ -15,6 +16,7 @@
     </ng-template>
     <ng-template pTemplate="body" let-client>
       <tr [pSelectableRow]="client">
+        <td><i [style]="{'color':client.client_enabled?'green':'red'}" class="pi pi-circle-fill"></i> </td>
         <td>{{client.id}}</td>
         <td>{{client.client_name}}</td>
         <td>{{client.client_lastname}}</td>
