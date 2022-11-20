@@ -20,7 +20,13 @@ export class OrderComponent implements OnInit {
     order_number:[''],
     order_enabled: ['']
   })
+  selectedClient: any;
+  options = [
+    {label:'Activo', value:true},
+    {label:'Inactivo', value:false},
+  ]
   selectedOrder: any;
+
 
   constructor(private api:ApiService, private fb:FormBuilder) { }
 

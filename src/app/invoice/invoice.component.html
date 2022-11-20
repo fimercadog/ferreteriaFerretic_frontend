@@ -14,7 +14,7 @@
     </ng-template>
     <ng-template pTemplate="body" let-invoice>
       <tr [pSelectableRow]="invoice">
-        <td><i [style]="{'color':invoice.invoice_enabled?'green':'red'}" class="pi pi-circle-fill"></i> </td>
+        <td><i pTooltip="{{invoice.invoice_enabled?'Activo':'Inactivo'}}" [style]="{'color':invoice.invoice_enabled?'green':'red'}" class="pi pi-circle-fill"></i> </td>
         <td>{{invoice.id}}</td>
         <td>{{invoice.client.client_name}}</td>
         <td>{{invoice.employee.employee_name}}</td>
@@ -35,6 +35,10 @@
     <br>
     <div style="padding: 10px">
       <input formControlName="invoice_number" type="text" placeholder="Número de Factura" pInputText>
+    </div>
+    <br>
+    <div style="padding: 10px">
+      <p-dropdown appendTo="body" [options]="options" formControlName="invoice_enabled" optionLabel="label" optionValue="value"></p-dropdown>
     </div>
   </form>
   <ng-template pTemplate="footer">

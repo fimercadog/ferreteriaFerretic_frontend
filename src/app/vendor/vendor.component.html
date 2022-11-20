@@ -16,7 +16,7 @@
     </ng-template>
     <ng-template pTemplate="body" let-vendor>
       <tr [pSelectableRow]="vendor">
-        <td><i [style]="{'color':vendor.vendor_enabled?'green':'red'}" class="pi pi-circle-fill"></i> </td>
+        <td><i pTooltip="{{vendor.vendor_enabled?'Activo':'Inactivo'}}" [style]="{'color':vendor.vendor_enabled?'green':'red'}" class="pi pi-circle-fill"></i> </td>
         <td>{{vendor.id}}</td>
         <td>{{vendor.vendor_name}}</td>
         <td>{{vendor.vendor_address}}</td>
@@ -42,6 +42,10 @@
     <br>
     <div style="padding: 10px">
       <input formControlName="vendor_email" type="text" placeholder="Email" pInputText>
+    </div>
+    <br>
+    <div style="padding: 10px">
+      <p-dropdown appendTo="body" [options]="options" formControlName="vendor_enabled" optionLabel="label" optionValue="value"></p-dropdown>
     </div>
   </form>
   <ng-template pTemplate="footer">

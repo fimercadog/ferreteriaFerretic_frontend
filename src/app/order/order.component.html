@@ -14,7 +14,7 @@
     </ng-template>
     <ng-template pTemplate="body" let-order>
       <tr [pSelectableRow]="order">
-        <td><i [style]="{'color':order.order_enabled?'green':'red'}" class="pi pi-circle-fill"></i> </td>
+        <td><i pTooltip="{{order.order_enabled?'Activo':'Inactivo'}}" [style]="{'color':order.order_enabled?'green':'red'}" class="pi pi-circle-fill"></i> </td>
         <td>{{order.id}}</td>
         <td>{{order.vendor.vendor_name}}</td>
         <td>{{order.employee.employee_name}}</td>
@@ -35,6 +35,10 @@
     <br>
     <div style="padding: 10px">
       <input formControlName="order_number" type="text" placeholder="Número de Pedido" pInputText>
+    </div>
+    <br>
+    <div style="padding: 10px">
+      <p-dropdown appendTo="body" [options]="options" formControlName="order_enabled" optionLabel="label" optionValue="value"></p-dropdown>
     </div>
   </form>
   <ng-template pTemplate="footer">

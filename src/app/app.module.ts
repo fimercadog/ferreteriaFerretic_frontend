@@ -31,6 +31,7 @@ import {InputTextareaModule} from 'primeng/inputtextarea';
 import {CalendarModule} from 'primeng/calendar';
 import {DropdownModule} from 'primeng/dropdown';
 import {AutoCompleteModule} from 'primeng/autocomplete';
+import {TooltipModule} from 'primeng/tooltip';
 
 
 
@@ -65,7 +66,8 @@ import {AutoCompleteModule} from 'primeng/autocomplete';
     InputTextareaModule,
     CalendarModule,
     DropdownModule,
-    AutoCompleteModule
+    AutoCompleteModule,
+    TooltipModule
   ],
   providers: [ApiService, AuthGuard],
   bootstrap: [AppComponent]

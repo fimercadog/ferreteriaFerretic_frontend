@@ -15,7 +15,7 @@
     </ng-template>
     <ng-template pTemplate="body" let-product>
       <tr [pSelectableRow]="product">
-        <td><i [style]="{'color':product.product_enabled?'green':'red'}" class="pi pi-circle-fill"></i> </td>
+        <td><i pTooltip="{{product.product_enabled?'Activo':'Inactivo'}}" [style]="{'color':product.product_enabled?'green':'red'}" class="pi pi-circle-fill"></i> </td>
         <td>{{product.id}}</td>
         <td>{{product.product_name}}</td>
         <td>{{product.product_description}}</td>
@@ -47,6 +47,10 @@
       <p-inputNumber formControlName="product_stock" [(ngModel)]="quantity" [showButtons]="true" buttonLayout="vertical" spinnerMode="vertical" inputId="vertical"
                      decrementButtonClass="p-button-secondary" incrementButtonClass="p-button-secondary" incrementButtonIcon="pi pi-plus" decrementButtonIcon="pi pi-minus">
       </p-inputNumber>
+    </div>
+    <br>
+    <div style="padding: 10px">
+      <p-dropdown appendTo="body" [options]="options" formControlName="product_enabled" optionLabel="label" optionValue="value"></p-dropdown>
     </div>
   </form>
   <ng-template pTemplate="footer">

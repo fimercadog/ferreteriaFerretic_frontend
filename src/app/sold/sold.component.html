@@ -17,7 +17,7 @@
     </ng-template>
     <ng-template pTemplate="body" let-sold>
       <tr [pSelectableRow]="sold">
-        <td><i [style]="{'color':sold.sold_enabled?'green':'red'}" class="pi pi-circle-fill"></i> </td>
+        <td><i pTooltip="{{sold.sold_enabled?'Activo':'Inactivo'}}" [style]="{'color':sold.sold_enabled?'green':'red'}" class="pi pi-circle-fill"></i> </td>
         <td>{{sold.id}}</td>
         <td>{{sold.invoice.invoice_number}}</td>
         <td>{{sold.invoice_date}}</td>
@@ -60,6 +60,10 @@
     <br>
     <div style="padding: 10px">
       <input formControlName="invoice_total" type="text" placeholder="Total" pInputText>
+    </div>
+    <br>
+    <div style="padding: 10px">
+      <p-dropdown appendTo="body" [options]="options" formControlName="sold_enabled" optionLabel="label" optionValue="value"></p-dropdown>
     </div>
   </form>
   <ng-template pTemplate="footer">

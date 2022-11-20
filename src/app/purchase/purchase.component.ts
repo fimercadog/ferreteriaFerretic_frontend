@@ -20,11 +20,19 @@ export class PurchaseComponent implements OnInit {
     product_id:[''],
     order_product_quantity:[''],
     order_subtotal:[''],
-    order_total:[''],
+    order_total:['0'],
     purchase_enabled:[''],
   })
+  options = [
+    {label:'Activo', value:true},
+    {label:'Inactivo', value:false},
+  ]
   selectedPurchase: any;
   quantity: any;
+  disabled: boolean = true;
+  product_name: any;
+  subtotal: any;
+  value7: string = 'Disabled'
 
   constructor(private api:ApiService, private fb:FormBuilder) { }
 
@@ -32,6 +40,34 @@ export class PurchaseComponent implements OnInit {
     this.get_orders()
     this.get_products()
     this.get_purchases()
+  }
+
+  calculatePurchaseSubtotal(product_name: any) {
+    let subtotal = 0;
+
+    if (this.purchases) {
+      for (let purchase of this.purchases) {
+        if (purchase.product.product_name === product_name) {
+          subtotal = purchase.order_product_quantity * purchase.product.product_price;
+        }
+      }
+    }
+
+    return subtotal;
+  }
+
+  calculatePurchaseTotal(order_number: any) {
+    let total = 0;
+
+    if (this.purchases) {
+      for (let purchase of this.purchases) {
+        if (purchase.order.order_number === order_number) {
+          total += purchase.order_subtotal;
+        }
+      }
+    }
+
+    return total;
   }
 
   get_orders(){
@@ -63,6 +99,7 @@ export class PurchaseComponent implements OnInit {
         }
       )
   }
+
 
   save_purchase() {
     this.api.post('purchase', this.form_purchase.value)

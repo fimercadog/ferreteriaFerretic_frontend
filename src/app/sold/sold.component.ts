@@ -23,6 +23,11 @@ export class SoldComponent implements OnInit {
     invoice_total:[''],
     sold_enabled:[''],
   })
+  selectedClient: any;
+  options = [
+    {label:'Activo', value:true},
+    {label:'Inactivo', value:false},
+  ]
   selectedSale: any;
   quantity: any;
 

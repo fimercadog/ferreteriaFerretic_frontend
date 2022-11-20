@@ -20,7 +20,13 @@ export class InvoiceComponent implements OnInit {
     invoice_number:[''],
     invoice_enabled:[''],
   })
+  selectedClient: any;
+  options = [
+    {label:'Activo', value:true},
+    {label:'Inactivo', value:false},
+  ]
   selectedInvoice: any;
+
 
   constructor(private api:ApiService, private fb:FormBuilder) { }
 

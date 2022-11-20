@@ -19,6 +19,11 @@ export class VendorComponent implements OnInit {
     vendor_email:[''],
     vendor_enabled:['']
   })
+  selectedClient: any;
+  options = [
+    {label:'Activo', value:true},
+    {label:'Inactivo', value:false},
+  ]
   selectedVendor: any;
 
   constructor(private api:ApiService, private fb:FormBuilder) { }

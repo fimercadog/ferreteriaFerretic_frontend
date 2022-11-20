@@ -16,7 +16,7 @@
     </ng-template>
     <ng-template pTemplate="body" let-client>
       <tr [pSelectableRow]="client">
-        <td><i [style]="{'color':client.client_enabled?'green':'red'}" class="pi pi-circle-fill"></i> </td>
+        <td><i pTooltip="{{client.client_enabled?'Activo':'Inactivo'}}" [style]="{'color':client.client_enabled?'green':'red'}" class="pi pi-circle-fill"></i> </td>
         <td>{{client.id}}</td>
         <td>{{client.client_name}}</td>
         <td>{{client.client_lastname}}</td>
@@ -47,6 +47,10 @@
     <br>
     <div style="padding: 10px">
       <input formControlName="client_email" type="text" placeholder="Email del Cliente" pInputText>
+    </div>
+    <br>
+    <div style="padding: 10px">
+      <p-dropdown appendTo="body" [options]="options" formControlName="client_enabled" optionLabel="label" optionValue="value"></p-dropdown>
     </div>
   </form>
   <ng-template pTemplate="footer">

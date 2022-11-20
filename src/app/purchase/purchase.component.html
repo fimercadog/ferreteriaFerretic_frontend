@@ -1,23 +1,64 @@
 <div style="padding: 30px">
-  <p-table [value]="purchases" selectionMode="single" [(selection)]="selectedPurchase" (onRowSelect)="fill_form_purchase()">
+  <p-table [value]="purchases" selectionMode="single" [(selection)]="selectedPurchase" (onRowSelect)="fill_form_purchase()"
+           sortField="order.order_number" sortMode="single" dataKey="order.order_number" rowGroupMode="subheader" groupRowsBy="order.order_number">
     <ng-template pTemplate="caption">
       <p-button icon="pi pi-plus" (click)="show_form_purchases = true"></p-button>
     </ng-template>
     <ng-template pTemplate="header">
       <tr>
-        <th></th>
+        <!--<th></th>-->
         <th pSortableColumn="id">ID <p-sortIcon field="id"></p-sortIcon></th>
-        <th pSortableColumn="order.order_number">Número de Pedido< <p-sortIcon field="order.order_number"></p-sortIcon>/th>
+        <!--<th pSortableColumn="order.order_number">Número de Pedido< <p-sortIcon field="order.order_number"></p-sortIcon>/th>-->
         <th pSortableColumn="order_date">Fecha de Pedido <p-sortIcon field="order_date"></p-sortIcon></th>
         <th pSortableColumn="product.product_name">Producto <p-sortIcon field="product.product_name"></p-sortIcon></th>
+        <th pSortableColumn="product.product_price">Precio Unitario <p-sortIcon field="product.product_price"></p-sortIcon></th>
         <th pSortableColumn="order_product_quantity">Cantidad <p-sortIcon field="order_product_quantity"></p-sortIcon></th>
         <th pSortableColumn="order_subtotal">Subtotal <p-sortIcon field="order_subtotal"></p-sortIcon></th>
-        <th pSortableColumn="order_total">Total <p-sortIcon field="order_total"></p-sortIcon></th>
+        <!--<th pSortableColumn="order_total">Total <p-sortIcon field="order_total"></p-sortIcon></th>-->
       </tr>
     </ng-template>
-    <ng-template pTemplate="body" let-purchase>
+    <ng-template pTemplate="groupheader" let-purchase let-rowIndex="rowIndex" let-expanded="expanded">
+      <tr>
+        <td colspan="6">
+          <button type="button" pButton pRipple [pRowToggler]="purchase" class="p-button-text p-button-rounded p-button-plain mr-2" [icon]="expanded ? 'pi pi-chevron-down' : 'pi pi-chevron-right'"></button>
+          <span class="font-bold ml-2">{{purchase.order.order_number}}</span>
+        </td>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="groupfooter" let-purchase>
+      <tr class="p-rowgroup-footer">
+        <td colspan="4" style="text-align: right">Total</td>
+        <td>{{calculatePurchaseTotal(purchase.order.order_number)}}</td>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="rowexpansion" let-purchase>
+      <tr>
+        <!--<td>
+          <i pTooltip="{{purchase.purchase_enabled?'Activo':'Inactivo'}}" [style]="{'color':purchase.purchase_enabled?'green':'red'}" class="pi pi-circle-fill"></i>
+        </td>-->
+        <td>
+          {{purchase.id}}
+        </td>
+        <td>
+          {{purchase.order_date}}
+        </td>
+        <td>
+          {{purchase.product.product_name}}
+        </td>
+        <td>
+          {{purchase.product.product_price}}
+        </td>
+        <td>
+          {{purchase.order_product_quantity}}
+        </td>
+        <td>
+          {{purchase.order_subtotal}}
+        </td>
+      </tr>
+    </ng-template>
+    <!--<ng-template pTemplate="body" let-purchase>
       <tr [pSelectableRow]="purchase">
-        <td><i [style]="{'color':purchase.purchase_enabled?'green':'red'}" class="pi pi-circle-fill"></i> </td>
+        <td><i pTooltip="{{purchase.purchase_enabled?'Activo':'Inactivo'}}" [style]="{'color':purchase.purchase_enabled?'green':'red'}" class="pi pi-circle-fill"></i> </td>
         <td>{{purchase.id}}</td>
         <td>{{purchase.order.order_number}}</td>
         <td>{{purchase.order_date}}</td>
@@ -26,7 +67,7 @@
         <td>{{purchase.order_subtotal}}</td>
         <td>{{purchase.order_total}}</td>
       </tr>
-    </ng-template>
+    </ng-template>-->
   </p-table>
 </div>
 <p-dialog header="Datos de la compra" [(visible)]="show_form_purchases" [position]="'top'" [modal]="true">
@@ -35,10 +76,10 @@
       <p-dropdown appendTo="body" [options]="orders" formControlName="order_id" optionLabel="order_number" optionValue="id"></p-dropdown>
     </div>
     <br>
-    <div style="padding: 10px">
+    <!--<div style="padding: 10px">
       <input formControlName="order_date" type="text" placeholder="Fecha del Pedido" pInputText>
     </div>
-    <br>
+    <br>-->
     <div style="padding: 10px">
       <p-dropdown appendTo="body" [options]="products" formControlName="product_id" optionLabel="product_name" optionValue="id"></p-dropdown>
     </div>
@@ -58,9 +99,13 @@
       <input formControlName="order_subtotal" type="text" placeholder="Subtotal" pInputText>
     </div>
     <br>
-    <div style="padding: 10px">
+    <!--<div style="padding: 10px">
       <input formControlName="order_total" type="text" placeholder="Total" pInputText>
     </div>
+    <br>-->
+    <!--<div style="padding: 10px">
+      <p-dropdown appendTo="body" [options]="options" formControlName="purchase_enabled" optionLabel="label" optionValue="value"></p-dropdown>
+    </div>-->
   </form>
   <ng-template pTemplate="footer">
     <p-button icon="pi pi-check" label="Cancelar" (click)="clean_form()" styleClass="p-button-text"></p-button>
