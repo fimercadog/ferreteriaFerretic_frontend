@@ -12,7 +12,7 @@ export class ClientComponent implements OnInit {
 
   clients:any = []
   show_form_clients: boolean = false;
-  form_client = this.fb.group({
+  form_client_update = this.fb.group({
     id:[''],
     client_name:[''],
     client_lastname:[''],
@@ -21,9 +21,18 @@ export class ClientComponent implements OnInit {
     client_email:[''],
     client_enabled:['']
   })
+  form_client_new = this.fb.group({
+    id:[''],
+    client_name:[''],
+    client_lastname:[''],
+    client_address:[''],
+    client_telephone:[''],
+    client_email:[''],
+    client_enabled:['True']
+  })
   selectedClient: any;
   options = [
-  {label:'Activo', value:true},
+    {label:'Activo', value:true},
     {label:'Inactivo', value:false},
   ]
 
@@ -44,13 +53,13 @@ export class ClientComponent implements OnInit {
   }
 
   save_client() {
-    this.api.post('client', this.form_client.value)
+    this.api.post('client', this.form_client_new.value)
       .subscribe(
         data=>{
           if(data !=undefined){
             this.get_clients()
             this.show_form_clients = false
-            this.form_client.reset()
+            this.form_client_new.reset()
           }else {
             //TODO
           }
@@ -59,13 +68,13 @@ export class ClientComponent implements OnInit {
   }
 
   update_client() {
-    this.api.update('client', this.form_client.value, this.form_client.value['id'])
+    this.api.update('client', this.form_client_update.value, this.form_client_update.value['id'])
       .subscribe(
         data=>{
           if(data !=undefined){
             this.get_clients()
             this.show_form_clients = false
-            this.form_client.reset()
+            this.form_client_update.reset()
           }else {
             //TODO
           }
@@ -74,8 +83,8 @@ export class ClientComponent implements OnInit {
   }
 
   fill_form_client() {
-    this.form_client.reset()
-    this.form_client.patchValue({
+    this.form_client_update.reset()
+    this.form_client_update.patchValue({
       id:this.selectedClient.id,
       client_name: this.selectedClient.client_name,
       client_lastname: this.selectedClient.client_lastname,
@@ -88,7 +97,7 @@ export class ClientComponent implements OnInit {
   }
 
   save(){
-    if(this.form_client.value['id']){
+    if(this.form_client_update.value['id']){
       this.update_client()
     }else {
       this.save_client()
@@ -96,7 +105,7 @@ export class ClientComponent implements OnInit {
   }
 
   clean_form(){
-    this.form_client.reset()
+    this.form_client_update.reset()
     this.show_form_clients = false
   }
 }

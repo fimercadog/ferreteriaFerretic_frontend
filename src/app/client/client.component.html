@@ -28,7 +28,7 @@
   </p-table>
 </div>
 <p-dialog header="Datos del Cliente" [(visible)]="show_form_clients" [position]="'top'" [modal]="true">
-  <form style="text-align: center" [formGroup]="form_client">
+  <form style="text-align: center" [formGroup]="form_client_update">
     <div style="padding: 10px">
       <input formControlName="client_name" type="text" placeholder="Nombre del Cliente" pInputText>
     </div>
@@ -52,6 +52,34 @@
     <div style="padding: 10px">
       <p-dropdown appendTo="body" [options]="options" formControlName="client_enabled" optionLabel="label" optionValue="value"></p-dropdown>
     </div>
+  </form>
+  <ng-template pTemplate="footer">
+    <p-button icon="pi pi-check" label="Cancelar" (click)="clean_form()" styleClass="p-button-text"></p-button>
+    <p-button icon="pi pi-check" label="Guardar" (click)="save()" styleClass="p-button-text"></p-button>
+  </ng-template>
+</p-dialog>
+<p-dialog header="Datos del Cliente" [(visible)]="show_form_clients" [position]="'top'" [modal]="true">
+  <form style="text-align: center" [formGroup]="form_client_new">
+    <div style="padding: 10px">
+      <input formControlName="client_name" type="text" placeholder="Nombre del Cliente" pInputText>
+    </div>
+    <br>
+    <div style="padding: 10px">
+      <input formControlName="client_lastname" type="text" placeholder="Apellido del Cliente" pInputText>
+    </div>
+    <br>
+    <div style="padding: 10px">
+      <input formControlName="client_address" type="text" placeholder="Dirección del Cliente" pInputText>
+    </div>
+    <br>
+    <div style="padding: 10px">
+      <input formControlName="client_telephone" type="text" placeholder="Teléfono del Cliente" pInputText>
+    </div>
+    <br>
+    <div style="padding: 10px">
+      <input formControlName="client_email" type="text" placeholder="Email del Cliente" pInputText>
+    </div>
+    <br>
   </form>
   <ng-template pTemplate="footer">
     <p-button icon="pi pi-check" label="Cancelar" (click)="clean_form()" styleClass="p-button-text"></p-button>
