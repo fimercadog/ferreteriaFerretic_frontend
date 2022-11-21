@@ -13,7 +13,9 @@ export class AppComponent {
 
   constructor(public api:ApiService, private router:Router) {
     this.items = [
-      {label:'Gestión de Empleado', command: (event) =>{
+      {label:'Ferrtic', command: (event) =>{
+          this.router.navigate(['/home'])
+        }},      {label:'Gestión de Empleado', command: (event) =>{
           this.router.navigate(['/employee'])
         }},
       {label:'Gestión de Proveedor', command: (event) =>{
