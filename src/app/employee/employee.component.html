@@ -1,23 +1,54 @@
-<div style="padding: 30px">
-  <p-table [value]="employees" selectionMode="single" [(selection)]="selectedEmployee" (onRowSelect)="fill_form_employee()">
+<div style="padding: 30px; width: 75%; margin: 50px auto">
+  <p-table #dt [value]="employees"
+           selectionMode="single"
+           [(selection)]="selectedEmployee"
+           (onRowSelect)="fill_form_employee()"
+           [rows]="2"
+           [tableStyle]="{'min-width': '50rem'}"
+           [paginator]="true"
+           [globalFilterFields]="['employee_name','employee_lastname','employee_address','employee_telephone','employee_birthday','employee_username', 'employee_password']"
+  >
     <ng-template pTemplate="caption">
-      <p-button icon="pi pi-plus" (click)="show_form_employees = true"></p-button>
+      <div class="flex align-items-center justify-content-between">
+        <h3 style="width:100%; text-align:center;">Gestion Empleados</h3>
+        <span class="p-input-icon-left">
+                    <i class="pi pi-search"></i>
+          <input pInputText type="text" (input)="dt.filterGlobal($any($event.target).value, 'contains')"
+                 placeholder="Global Search"/>
+                </span>
+        <p-button icon="pi pi-plus" label="Nuevo Empleado" (click)="show_form_employees = true"></p-button>
+      </div>
     </ng-template>
     <ng-template pTemplate="header">
       <tr>
         <th></th>
-        <th pSortableColumn="id">ID <p-sortIcon field="id"></p-sortIcon></th>
-        <th pSortableColumn="employee_name">Nombre <p-sortIcon field="employee_name"></p-sortIcon></th>
-        <th pSortableColumn="employee_lastname">Apellido <p-sortIcon field="employee_lastname"></p-sortIcon></th>
-        <th pSortableColumn="employee_address">Dirección <p-sortIcon field="employee_address"></p-sortIcon></th>
-        <th pSortableColumn="employee_telephone">Teléfono <p-sortIcon field="employee_telephone"></p-sortIcon></th>
-        <th pSortableColumn="employee_birthday">Fecha de Nacimiento <p-sortIcon field="employee_birthday"></p-sortIcon></th>
-        <th pSortableColumn="employee_username">Nombre de Usuario <p-sortIcon field="employee_username"></p-sortIcon></th>
+        <th pSortableColumn="id">ID
+          <p-sortIcon field="id"></p-sortIcon>
+        </th>
+        <th pSortableColumn="employee_name">Nombre
+          <p-sortIcon field="employee_name"></p-sortIcon>
+        </th>
+        <th pSortableColumn="employee_lastname">Apellido
+          <p-sortIcon field="employee_lastname"></p-sortIcon>
+        </th>
+        <th pSortableColumn="employee_address">Dirección
+          <p-sortIcon field="employee_address"></p-sortIcon>
+        </th>
+        <th pSortableColumn="employee_telephone">Teléfono
+          <p-sortIcon field="employee_telephone"></p-sortIcon>
+        </th>
+        <th pSortableColumn="employee_birthday">Fecha de Nacimiento
+          <p-sortIcon field="employee_birthday"></p-sortIcon>
+        </th>
+        <th pSortableColumn="employee_username">Nombre de Usuario
+          <p-sortIcon field="employee_username"></p-sortIcon>
+        </th>
       </tr>
     </ng-template>
     <ng-template pTemplate="body" let-employee>
       <tr [pSelectableRow]="employee">
-        <td><i pTooltip="{{employee.employee_enabled?'Activo':'Inactivo'}}" [style]="{'color':employee.employee_enabled?'green':'red'}" class="pi pi-circle-fill"></i> </td>
+        <td><i pTooltip="{{employee.employee_enabled?'Activo':'Inactivo'}}"
+               [style]="{'color':employee.employee_enabled?'green':'red'}" class="pi pi-circle-fill"></i></td>
         <td>{{employee.id}}</td>
         <td>{{employee.employee_name}}</td>
         <td>{{employee.employee_lastname}}</td>
@@ -29,7 +60,8 @@
     </ng-template>
   </p-table>
 </div>
-<p-dialog header="Datos del Empleado" [(visible)]="show_form_employees" [position]="'top'" [modal]="true">
+<p-dialog header="Datos del Empleado" [(visible)]="show_form_employees" [position]="'top'" [modal]="true"
+          [closable]="false">
   <form style="text-align: center" [formGroup]="form_employee">
     <div style="padding: 10px">
       <input formControlName="employee_name" type="text" placeholder="Nombre del Empleado" pInputText>
@@ -60,11 +92,12 @@
     </div>
     <br>
     <div style="padding: 10px">
-      <p-dropdown appendTo="body" [options]="options" formControlName="employee_enabled" optionLabel="label" optionValue="value"></p-dropdown>
+      <p-dropdown appendTo="body" [options]="options" formControlName="employee_enabled" optionLabel="label"
+                  optionValue="value" [style]="{'width':'100%'}"></p-dropdown>
     </div>
   </form>
   <ng-template pTemplate="footer">
-    <p-button icon="pi pi-check" label="Cancelar" (click)="clean_form()" styleClass="p-button-text"></p-button>
-    <p-button icon="pi pi-check" label="Guardar" (click)="save()" styleClass="p-button-text"></p-button>
+    <button pButton label="X Cancelar" (click)="clean_form()" class="p-button-danger"></button>
+    <button pButton icon="pi pi-check" label="Guardar" (click)="save()" class="p-button-success"></button>
   </ng-template>
 </p-dialog>
