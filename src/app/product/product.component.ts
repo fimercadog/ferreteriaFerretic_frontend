@@ -17,7 +17,7 @@ export class ProductComponent implements OnInit {
     product_description:[''],
     product_price:[''],
     product_stock:[''],
-    product_enabled: ['']
+    product_enabled: ['True']
   })
   selectedClient: any;
   options = [

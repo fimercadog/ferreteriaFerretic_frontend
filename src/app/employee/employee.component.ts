@@ -21,7 +21,7 @@ export class EmployeeComponent implements OnInit {
     employee_birthday:[''],
     employee_username:[''],
     employee_password:[''],
-    employee_enabled:['']
+    employee_enabled:['True']
   })
   selectedClient: any;
   options = [

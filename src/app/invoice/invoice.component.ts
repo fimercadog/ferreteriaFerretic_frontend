@@ -18,7 +18,7 @@ export class InvoiceComponent implements OnInit {
     client_id:[''],
     employee_id:[''],
     invoice_number:[''],
-    invoice_enabled:[''],
+    invoice_enabled:['True'],
   })
   selectedClient: any;
   options = [

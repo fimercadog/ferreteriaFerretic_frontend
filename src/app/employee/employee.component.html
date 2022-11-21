@@ -1,22 +1,22 @@
-<div style="padding: 30px; width: 75%; margin: 50px auto">
+<div style="padding: 30px; width: 95%; margin: 20px auto">
   <p-table #dt [value]="employees"
            selectionMode="single"
            [(selection)]="selectedEmployee"
            (onRowSelect)="fill_form_employee()"
-           [rows]="2"
+           [rows]="5"
            [tableStyle]="{'min-width': '50rem'}"
            [paginator]="true"
            [globalFilterFields]="['employee_name','employee_lastname','employee_address','employee_telephone','employee_birthday','employee_username', 'employee_password']"
   >
     <ng-template pTemplate="caption">
       <div class="flex align-items-center justify-content-between">
-        <h3 style="width:100%; text-align:center;">Gestion Empleados</h3>
+        <h3 style="width:100%; text-align:center;">Gestión Empleados</h3>
         <span class="p-input-icon-left">
                     <i class="pi pi-search"></i>
           <input pInputText type="text" (input)="dt.filterGlobal($any($event.target).value, 'contains')"
                  placeholder="Global Search"/>
                 </span>
-        <p-button icon="pi pi-plus" label="Nuevo Empleado" (click)="show_form_employees = true"></p-button>
+        <p-button [style]="{'margin-left': '10px'}" icon="pi pi-plus" label="Nuevo Empleado" (click)="show_form_employees = true"></p-button>
       </div>
     </ng-template>
     <ng-template pTemplate="header">
@@ -93,7 +93,7 @@
     <br>
     <div style="padding: 10px">
       <p-dropdown appendTo="body" [options]="options" formControlName="employee_enabled" optionLabel="label"
-                  optionValue="value" [style]="{'width':'100%'}"></p-dropdown>
+                  optionValue="value" [style]="{'width':'85%'}"></p-dropdown>
     </div>
   </form>
   <ng-template pTemplate="footer">

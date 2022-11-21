@@ -1,15 +1,34 @@
-<div style="padding: 30px">
-  <p-table [value]="orders" selectionMode="single" [(selection)]="selectedOrder" (onRowSelect)="fill_form_order()">
+<div style="padding: 30px; width: 95%; margin: 20px auto">
+  <p-table #dt [value]="orders" selectionMode="single"
+           [(selection)]="selectedOrder"
+           (onRowSelect)="fill_form_order()"
+           [rows]="5"
+           [tableStyle]="{'min-width': '50rem'}"
+           [paginator]="true"
+           [globalFilterFields]="['vendor']"
+  >
     <ng-template pTemplate="caption">
-      <p-button icon="pi pi-plus" (click)="show_form_orders = true"></p-button>
+      <div class="flex align-items-center justify-content-between">
+        <h3 style="width:100%; text-align:center;">Gestión Pedidos</h3>
+        <span class="p-input-icon-left">
+                    <i class="pi pi-search"></i>
+          <input pInputText type="text" (input)="dt.filterGlobal($any($event.target).value, 'contains')"
+                 placeholder="Global Search"/>
+                </span>
+        <p-button [style]="{'margin-left': '10px'}" icon="pi pi-plus" label="Nuevo Pedido" (click)="show_form_orders = true"></p-button>
+      </div>
     </ng-template>
     <ng-template pTemplate="header">
       <tr>
         <th></th>
-        <th pSortableColumn="id">ID <p-sortIcon field="id"></p-sortIcon></th>
-        <th pSortableColumn="vendor.vendor_name">Cliente <p-sortIcon field="vendor.vendor_name"></p-sortIcon></th>
-        <th pSortableColumn="employee.employee_name">Empleado <p-sortIcon field="employee.employee_name"></p-sortIcon></th>
-        <th pSortableColumn="order_number">Número de Pedido <p-sortIcon field="order_number"></p-sortIcon></th>
+        <th pSortableColumn="id">ID
+          <p-sortIcon field="id"></p-sortIcon></th>
+        <th pSortableColumn="vendor.vendor_name">Cliente
+          <p-sortIcon field="vendor.vendor_name"></p-sortIcon></th>
+        <th pSortableColumn="employee.employee_name">Empleado
+          <p-sortIcon field="employee.employee_name"></p-sortIcon></th>
+        <th pSortableColumn="order_number">Número de Pedido
+          <p-sortIcon field="order_number"></p-sortIcon></th>
       </tr>
     </ng-template>
     <ng-template pTemplate="body" let-order>
@@ -38,11 +57,11 @@
     </div>
     <br>
     <div style="padding: 10px">
-      <p-dropdown appendTo="body" [options]="options" formControlName="order_enabled" optionLabel="label" optionValue="value"></p-dropdown>
+      <p-dropdown appendTo="body" [options]="options" formControlName="order_enabled" optionLabel="label" optionValue="value" [style]="{'width':'85%'}"></p-dropdown>
     </div>
   </form>
   <ng-template pTemplate="footer">
-    <p-button icon="pi pi-check" label="Cancelar" (click)="clean_form()" styleClass="p-button-text"></p-button>
-    <p-button icon="pi pi-check" label="Guardar" (click)="save()" styleClass="p-button-text"></p-button>
+    <button pButton label="X Cancelar" (click)="clean_form()" class="p-button-danger"></button>
+    <button pButton icon="pi pi-check" label="Guardar" (click)="save()" class="p-button-success"></button>
   </ng-template>
 </p-dialog>

@@ -21,7 +21,7 @@ export class PurchaseComponent implements OnInit {
     order_product_quantity:[''],
     order_subtotal:[''],
     order_total:['0'],
-    purchase_enabled:[''],
+    purchase_enabled:['True'],
   })
   options = [
     {label:'Activo', value:true},

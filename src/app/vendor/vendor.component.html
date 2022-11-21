@@ -1,7 +1,22 @@
-<div style="padding: 30px">
-  <p-table [value]="vendors" selectionMode="single" [(selection)]="selectedVendor" (onRowSelect)="fill_form_vendor()">
+<div style="padding: 30px; width: 95%; margin: 20px auto">
+  <p-table #dt [value]="vendors" selectionMode="single"
+           [(selection)]="selectedVendor"
+           (onRowSelect)="fill_form_vendor()"
+           [rows]="5"
+           [tableStyle]="{'min-width': '50rem'}"
+           [paginator]="true"
+           [globalFilterFields]="['vendor_name','vendor_address','vendor_telephone','vendor_email']"
+  >
     <ng-template pTemplate="caption">
-      <p-button icon="pi pi-plus" (click)="show_form_vendors = true"></p-button>
+      <div class="flex align-items-center justify-content-between">
+        <h3 style="width:100%; text-align:center;">Gestión Proveedores</h3>
+        <span class="p-input-icon-left">
+                    <i class="pi pi-search"></i>
+          <input pInputText type="text" (input)="dt.filterGlobal($any($event.target).value, 'contains')"
+                 placeholder="Global Search"/>
+                </span>
+        <p-button [style]="{'margin-left': '10px'}" icon="pi pi-plus" label="Nuevo Proveedor" (click)="show_form_vendors = true"></p-button>
+      </div>
     </ng-template>
     <ng-template pTemplate="header">
       <tr>
@@ -45,11 +60,11 @@
     </div>
     <br>
     <div style="padding: 10px">
-      <p-dropdown appendTo="body" [options]="options" formControlName="vendor_enabled" optionLabel="label" optionValue="value"></p-dropdown>
+      <p-dropdown appendTo="body" [options]="options" formControlName="vendor_enabled" optionLabel="label" optionValue="value" [style]="{'width':'85%'}"></p-dropdown>
     </div>
   </form>
   <ng-template pTemplate="footer">
-    <p-button icon="pi pi-check" label="Cancelar" (click)="clean_form()" styleClass="p-button-text"></p-button>
-    <p-button icon="pi pi-check" label="Guardar" (click)="save()" styleClass="p-button-text"></p-button>
+    <button pButton label="X Cancelar" (click)="clean_form()" class="p-button-danger"></button>
+    <button pButton icon="pi pi-check" label="Guardar" (click)="save()" class="p-button-success"></button>
   </ng-template>
 </p-dialog>
