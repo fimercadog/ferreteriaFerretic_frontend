@@ -16,7 +16,7 @@ body {
   align-items: center;
   justify-content: space-between;
   height: 63px;
-  background: #171717;
+  background: #0f0f1c;
   position: fixed;
   width: 100%;
   z-index: 100;
@@ -48,7 +48,7 @@ body {
 }
 
 .navbar a:hover {
-  background: #3f3f3f;
+  background: #242a31;
 }
 
 .header {
@@ -114,7 +114,7 @@ p {
 
 .sau {
   padding: 30px;
-  background: #1f1d1d
+  background: #1d1d2a
 }
 
 .box-container {
@@ -128,10 +128,10 @@ p {
 .box-container .box {
   height: 11rem;
   width: 17rem;
-  background: #101010;
+  background: #1d1d2d;
   text-align: center;
   border-radius: 1rem;
-  box-shadow: 0 .3rem 5rem rgba(0, 0 , 0, .5);
+  box-shadow: 0 .3rem 5rem rgba(3, 3, 3, 0.5);
   margin: 2rem;
 }
 
@@ -160,10 +160,10 @@ p {
 }
 
 .about {
-  background: #171717;
+  background: #12131e;
 }
 
-.price {
+.info {
   background: url(../../assets/img/costos.jpg) no-repeat center;
   background-attachment: fixed;
   background-size: cover;
@@ -173,7 +173,7 @@ p {
 
 .contact {
   padding-top: 20px;
-  background: #171717;
+  background: #181826;
   padding-bottom: 0;
 }
 

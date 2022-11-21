@@ -13,9 +13,10 @@ export class AppComponent {
 
   constructor(public api:ApiService, private router:Router) {
     this.items = [
-      {label:'Ferrtic', command: (event) =>{
+      {label:'Inicio', command: (event) =>{
           this.router.navigate(['/home'])
-        }},      {label:'Gestión de Empleado', command: (event) =>{
+        }},
+      {label:'Gestión de Empleado', command: (event) =>{
           this.router.navigate(['/employee'])
         }},
       {label:'Gestión de Proveedor', command: (event) =>{
