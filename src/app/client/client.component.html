@@ -1,22 +1,44 @@
-<div style="padding: 30px">
-  <p-table [value]="clients" selectionMode="single" [(selection)]="selectedClient" (onRowSelect)="fill_form_client()">
+<div style="padding: 30px; width: 95%; margin: 20px auto">
+  <p-table #dt [value]="clients" selectionMode="single"
+           [(selection)]="selectedClient"
+           (onRowSelect)="fill_form_client()"
+           [rows]="5"
+           [tableStyle]="{'min-width': '50rem'}"
+           [paginator]="true"
+           [globalFilterFields]="['client_name','client_lastname','client_address','client_telephone','client_email']"
+  >
     <ng-template pTemplate="caption">
-      <p-button icon="pi pi-plus" (click)="show_form_clients = true"></p-button>
+      <div class="flex align-items-center justify-content-between">
+        <h3 style="width:100%; text-align:center;">Gestión Empleados</h3>
+        <span class="p-input-icon-left">
+                    <i class="pi pi-search"></i>
+          <input pInputText type="text" (input)="dt.filterGlobal($any($event.target).value, 'contains')"
+                 placeholder="Global Search"/>
+                </span>
+        <p-button [style]="{'margin-left': '10px'}" icon="pi pi-plus" label="Nuevo Cliente" (click)="show_form_clients = true"></p-button>
+      </div>
     </ng-template>
     <ng-template pTemplate="header">
       <tr>
         <th></th>
-        <th pSortableColumn="id">ID <p-sortIcon field="id"></p-sortIcon></th>
-        <th pSortableColumn="client_name">Nombre <p-sortIcon field="client_name"></p-sortIcon></th>
-        <th pSortableColumn="client_lastname">Apellido <p-sortIcon field="client_lastname"></p-sortIcon></th>
-        <th pSortableColumn="client_address">Dirección <p-sortIcon field="client_address"></p-sortIcon></th>
-        <th pSortableColumn="client_telephone">Teléfono <p-sortIcon field="client_telephone"></p-sortIcon></th>
-        <th pSortableColumn="client_email">Email <p-sortIcon field="client_email"></p-sortIcon></th>
+        <th pSortableColumn="id">ID
+          <p-sortIcon field="id"></p-sortIcon></th>
+        <th pSortableColumn="client_name">Nombre
+          <p-sortIcon field="client_name"></p-sortIcon></th>
+        <th pSortableColumn="client_lastname">Apellido
+          <p-sortIcon field="client_lastname"></p-sortIcon></th>
+        <th pSortableColumn="client_address">Dirección
+          <p-sortIcon field="client_address"></p-sortIcon></th>
+        <th pSortableColumn="client_telephone">Teléfono
+          <p-sortIcon field="client_telephone"></p-sortIcon></th>
+        <th pSortableColumn="client_email">Email
+          <p-sortIcon field="client_email"></p-sortIcon></th>
       </tr>
     </ng-template>
     <ng-template pTemplate="body" let-client>
       <tr [pSelectableRow]="client">
-        <td><i pTooltip="{{client.client_enabled?'Activo':'Inactivo'}}" [style]="{'color':client.client_enabled?'green':'red'}" class="pi pi-circle-fill"></i> </td>
+        <td><i pTooltip="{{client.client_enabled?'Activo':'Inactivo'}}"
+               [style]="{'color':client.client_enabled?'green':'red'}" class="pi pi-circle-fill"></i> </td>
         <td>{{client.id}}</td>
         <td>{{client.client_name}}</td>
         <td>{{client.client_lastname}}</td>
@@ -50,11 +72,11 @@
     </div>
     <br>
     <div style="padding: 10px">
-      <p-dropdown appendTo="body" [options]="options" formControlName="client_enabled" optionLabel="label" optionValue="value"></p-dropdown>
+      <p-dropdown appendTo="body" [options]="options" formControlName="client_enabled" optionLabel="label" optionValue="value" [style]="{'width':'85%'}"></p-dropdown>
     </div>
   </form>
   <ng-template pTemplate="footer">
-    <p-button icon="pi pi-check" label="Cancelar" (click)="clean_form()" styleClass="p-button-text"></p-button>
-    <p-button icon="pi pi-check" label="Guardar" (click)="save()" styleClass="p-button-text"></p-button>
+    <button pButton label="X Cancelar" (click)="clean_form()" class="p-button-danger"></button>
+    <button pButton icon="pi pi-check" label="Guardar" (click)="save()" class="p-button-success"></button>
   </ng-template>
 </p-dialog>

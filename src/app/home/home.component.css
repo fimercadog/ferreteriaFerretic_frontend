@@ -9,6 +9,7 @@
 body {
   text-align: center;
   font-family: sans-serif;
+  text-shadow: rgba(15, 15, 28, 0.76) 1px 1px 1px;
 }
 
 .head {
@@ -36,6 +37,7 @@ body {
   color: #fff;
   text-transform: uppercase;
   font-size: 20px;
+  text-shadow: #0f0f1c;
 }
 
 .navbar a {
@@ -45,6 +47,7 @@ body {
   text-decoration: none;
   text-transform: uppercase;
   font-size: 20px;
+  text-shadow: #0f0f1c;
 }
 
 .navbar a:hover {
@@ -55,7 +58,6 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-
 }
 
 .header {
@@ -66,10 +68,11 @@ body {
 
 .title {
   margin-bottom: 40px;
-  font-size: 60px;
-  font-weight: 600;
+  font-size: 75px;
+  font-weight: 800;
   text-transform: uppercase;
   color: #fff;
+  text-shadow: #0f0f1c;
 }
 
 p {
@@ -77,6 +80,7 @@ p {
   font-size: 22px;
   color: #fff;
   padding: 0 100px;
+  text-shadow: rgba(15, 15, 28, 0.76) 1px 1px 1px;
 }
 
 .btn {

@@ -20,8 +20,8 @@ export class SoldComponent implements OnInit {
     product_id:[''],
     invoice_product_quantity:[''],
     invoice_subtotal:[''],
-    invoice_total:[''],
-    sold_enabled:[''],
+    invoice_total:['0'],
+    sold_enabled:['True'],
   })
   selectedClient: any;
   options = [
@@ -30,6 +30,8 @@ export class SoldComponent implements OnInit {
   ]
   selectedSale: any;
   quantity: any;
+  disabled: boolean = true;
+  product_name: any;
 
   constructor(private api:ApiService, private fb:FormBuilder) { }
 
@@ -37,6 +39,20 @@ export class SoldComponent implements OnInit {
     this.get_invoices()
     this.get_products()
     this.get_sales()
+  }
+
+  calculateSoldTotal(invoice_number: any) {
+    let total = 0;
+
+    if (this.sales) {
+      for (let sold of this.sales) {
+        if (sold.invoice.invoice_number === invoice_number) {
+          total += sold.invoice_subtotal;
+        }
+      }
+    }
+
+    return total;
   }
 
   get_invoices(){

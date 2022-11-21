@@ -18,7 +18,7 @@ export class OrderComponent implements OnInit {
     vendor_id:[''],
     employee_id:[''],
     order_number:[''],
-    order_enabled: ['']
+    order_enabled: ['True']
   })
   selectedClient: any;
   options = [

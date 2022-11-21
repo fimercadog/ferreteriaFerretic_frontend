@@ -17,7 +17,7 @@ export class VendorComponent implements OnInit {
     vendor_address:[''],
     vendor_telephone:[''],
     vendor_email:[''],
-    vendor_enabled:['']
+    vendor_enabled:['True']
   })
   selectedClient: any;
   options = [

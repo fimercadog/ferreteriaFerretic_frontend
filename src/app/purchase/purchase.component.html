@@ -1,8 +1,24 @@
-<div style="padding: 30px">
-  <p-table [value]="purchases" selectionMode="single" [(selection)]="selectedPurchase" (onRowSelect)="fill_form_purchase()"
-           sortField="order.order_number" sortMode="single" dataKey="order.order_number" rowGroupMode="subheader" groupRowsBy="order.order_number">
+<div style="padding: 30px; width: 95%; margin: 20px auto">
+  <p-table #dt [value]="purchases" selectionMode="single"
+           [(selection)]="selectedPurchase"
+           (onRowSelect)="fill_form_purchase()"
+           sortField="order.order_number"
+           sortMode="single"
+           dataKey="order.order_number"
+           rowGroupMode="subheader"
+           groupRowsBy="order.order_number"
+           [tableStyle]="{'min-width': '50rem'}"
+           [globalFilterFields]="['order','order_date','product','order_product_quantity','order_subtotal','order_total']">
     <ng-template pTemplate="caption">
-      <p-button icon="pi pi-plus" (click)="show_form_purchases = true"></p-button>
+      <div class="flex align-items-center justify-content-between">
+        <h3 style="width:100%; text-align:center;">Gestión de Compras</h3>
+        <span class="p-input-icon-left">
+                    <i class="pi pi-search"></i>
+          <input pInputText type="text" (input)="dt.filterGlobal($any($event.target).value, 'contains')"
+                 placeholder="Global Search"/>
+                </span>
+        <p-button [style]="{'margin-left': '10px'}" icon="pi pi-plus" label="Nueva Compra" (click)="show_form_purchases = true"></p-button>
+      </div>
     </ng-template>
     <ng-template pTemplate="header">
       <tr>
@@ -113,7 +129,7 @@
     </div>-->
   </form>
   <ng-template pTemplate="footer">
-    <p-button icon="pi pi-check" label="Cancelar" (click)="clean_form()" styleClass="p-button-text"></p-button>
-    <p-button icon="pi pi-check" label="Guardar" (click)="save()" styleClass="p-button-text"></p-button>
+    <button pButton label="X Cancelar" (click)="clean_form()" class="p-button-danger"></button>
+    <button pButton icon="pi pi-check" label="Guardar" (click)="save()" class="p-button-success"></button>
   </ng-template>
 </p-dialog>
