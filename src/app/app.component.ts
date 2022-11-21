@@ -11,36 +11,63 @@ import {ApiService} from "./providers/api.service";
 export class AppComponent {
   items: MenuItem[] = [];
 
-  constructor(public api:ApiService, private router:Router) {
+  constructor(public api: ApiService, private router: Router) {
     this.items = [
-      {label:'Inicio', command: (event) =>{
+      {
+        label: 'Inicio', command: (event) => {
           this.router.navigate(['/home'])
-        }},
-      {label:'Gestión de Empleado', command: (event) =>{
+        }
+      },
+      {
+        label: 'Gestión de Empleado', command: (event) => {
           this.router.navigate(['/employee'])
-        }},
-      {label:'Gestión de Proveedor', command: (event) =>{
+        }
+      },
+      {
+        label: 'Gestión de Proveedor', command: (event) => {
           this.router.navigate(['/vendor'])
-        }},
-      {label:'Gestión de Cliente', command: (event) =>{
+        }
+      },
+      {
+        label: 'Gestión de Cliente', command: (event) => {
           this.router.navigate(['/client'])
-        }},
-      {label:'Gestión de Producto', command: (event) =>{
+        }
+      },
+      {
+        label: 'Gestión de Producto', command: (event) => {
           this.router.navigate(['/product'])
-        }},
-      {label:'Gestión de Pedido', command: (event) =>{
+        }
+      },
+      {
+        label: 'Gestión de Pedido', command: (event) => {
           this.router.navigate(['/order'])
-        }},
-      {label:'Gestión de Factura', command: (event) =>{
+        }
+      },
+      {
+        label: 'Gestión de Factura', command: (event) => {
           this.router.navigate(['/invoice'])
-        }},
-      {label:'Compras', command: (event) =>{
+        }
+      },
+      {
+        label: 'Compras', command: (event) => {
+          this.router.navigate(['/sold'])
+        }
+      },
+      {
+        label: 'Ventas', command: (event) => {
           this.router.navigate(['/purchase'])
-        }},
-      {label:'Ventas', command: (event) =>{
-      this.router.navigate(['/sold'])
-    }},
-      {label:'Salir', command: (event) => {this.api.logout()}},
+        }
+      },
+      {
+        label: 'Sucursal', command: (event) => {
+          this.router.navigate(['/sucursal'])
+        }
+      },
+      {
+        label: 'Salir', command: (event) => {
+          this.api.logout()
+        }
+      },
     ]
   }
 }

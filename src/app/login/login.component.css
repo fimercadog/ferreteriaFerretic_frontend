@@ -99,12 +99,12 @@ input{
 
 .forgot{
   text-decoration: none;
-  color: #000000;
+  color: #ddd;
 }
 
 hr {
   margin: 16px 0;
-  border: 1px solid #ddd;
+  border: 1px solid #000000;
 }
 
 .col2 p{

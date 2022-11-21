@@ -11,6 +11,7 @@ import {OrderComponent} from "./order/order.component";
 import {InvoiceComponent} from "./invoice/invoice.component";
 import {PurchaseComponent} from "./purchase/purchase.component";
 import {SoldComponent} from "./sold/sold.component";
+import {SucursalComponent} from "./sucursal/sucursal.component";
 
 const routes:Routes = [
   {path:'home', component:HomeComponent, canActivate:[AuthGuard]},
@@ -23,6 +24,7 @@ const routes:Routes = [
   {path:'invoice', component:InvoiceComponent, canActivate:[AuthGuard]},
   {path:'purchase', component:PurchaseComponent, canActivate:[AuthGuard]},
   {path:'sold', component:SoldComponent, canActivate:[AuthGuard]},
+  {path:'sucursal', component:SucursalComponent, canActivate:[AuthGuard]},
   {path:'**', redirectTo:'/login'},
 ];
 

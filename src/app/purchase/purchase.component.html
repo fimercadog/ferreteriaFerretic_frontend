@@ -13,6 +13,7 @@
         <th pSortableColumn="product.product_name">Producto <p-sortIcon field="product.product_name"></p-sortIcon></th>
         <th pSortableColumn="product.product_price">Precio Unitario <p-sortIcon field="product.product_price"></p-sortIcon></th>
         <th pSortableColumn="order_product_quantity">Cantidad <p-sortIcon field="order_product_quantity"></p-sortIcon></th>
+        <th> Matriz de Productos</th>
         <th pSortableColumn="order_subtotal">Subtotal <p-sortIcon field="order_subtotal"></p-sortIcon></th>
         <!--<th pSortableColumn="order_total">Total <p-sortIcon field="order_total"></p-sortIcon></th>-->
       </tr>
@@ -50,6 +51,10 @@
         </td>
         <td>
           {{purchase.order_product_quantity}}
+        </td>
+        <td style="text-align: center">
+          <i (click)="ver_matriz(purchases)" class="pi pi-qrcode"></i>
+          <i style="margin-left: 20px" (click)="selectedPurchase=purchase;fill_form_purchase()" class="pi pi-pencil"></i>
         </td>
         <td>
           {{purchase.order_subtotal}}

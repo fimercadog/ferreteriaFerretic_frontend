@@ -19,6 +19,7 @@ export class PurchaseComponent implements OnInit {
     order_date:[''],
     product_id:[''],
     order_product_quantity:[''],
+    matriz_productos:[''],
     order_subtotal:[''],
     order_total:['0'],
     purchase_enabled:[''],
@@ -87,6 +88,9 @@ export class PurchaseComponent implements OnInit {
 
 
   save_purchase() {
+    this.form_purchase.patchValue({
+      matriz_productos:JSON.stringify(this.products(this.form_purchase.value))
+    })
     this.api.post('purchase', this.form_purchase.value)
       .subscribe(
         data=>{
@@ -124,6 +128,7 @@ export class PurchaseComponent implements OnInit {
       order_date: this.selectedPurchase.order_date,
       product_id: this.selectedPurchase.product.id,
       order_product_quantity: this.selectedPurchase.order_product_quantity,
+      matriz_productos: this.selectedPurchase.matriz_productos,
       order_subtotal: this.selectedPurchase.order_subtotal,
       order_total: this.selectedPurchase.order_total,
       purchase_enabled: this.selectedPurchase.purchase_enabled,
@@ -142,5 +147,17 @@ export class PurchaseComponent implements OnInit {
   clean_form(){
     this.form_purchase.reset()
     this.show_form_purchases = false
+  }
+
+  crear_matriz_produtos(purchase:any){
+    let matriz=[]
+    for(let i=0;i<purchase.order_product_quantity;i++){
+      matriz.push({'product':i,'en_uso':false})
+    }
+    return matriz
+  }
+
+  ver_matriz(sala:any) {
+    console.log(JSON.parse(this.purchases.matriz_productos))
   }
 }

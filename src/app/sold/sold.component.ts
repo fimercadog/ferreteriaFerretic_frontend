@@ -126,4 +126,6 @@ export class SoldComponent implements OnInit {
     this.form_sale.reset()
     this.show_form_sales = false
   }
+
+
 }

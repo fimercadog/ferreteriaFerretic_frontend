@@ -32,6 +32,7 @@ import {CalendarModule} from 'primeng/calendar';
 import {DropdownModule} from 'primeng/dropdown';
 import {AutoCompleteModule} from 'primeng/autocomplete';
 import {TooltipModule} from 'primeng/tooltip';
+import { SucursalComponent } from './sucursal/sucursal.component';
 
 
 
@@ -47,7 +48,8 @@ import {TooltipModule} from 'primeng/tooltip';
     InvoiceComponent,
     ProductComponent,
     PurchaseComponent,
-    SoldComponent
+    SoldComponent,
+    SucursalComponent
   ],
   imports: [
     BrowserModule,
