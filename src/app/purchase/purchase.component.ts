@@ -31,8 +31,6 @@ export class PurchaseComponent implements OnInit {
   quantity: any;
   disabled: boolean = true;
   product_name: any;
-  subtotal: any;
-  value7: string = 'Disabled'
 
   constructor(private api:ApiService, private fb:FormBuilder) { }
 
@@ -42,19 +40,6 @@ export class PurchaseComponent implements OnInit {
     this.get_purchases()
   }
 
-  calculatePurchaseSubtotal(product_name: any) {
-    let subtotal = 0;
-
-    if (this.purchases) {
-      for (let purchase of this.purchases) {
-        if (purchase.product.product_name === product_name) {
-          subtotal = purchase.order_product_quantity * purchase.product.product_price;
-        }
-      }
-    }
-
-    return subtotal;
-  }
 
   calculatePurchaseTotal(order_number: any) {
     let total = 0;
