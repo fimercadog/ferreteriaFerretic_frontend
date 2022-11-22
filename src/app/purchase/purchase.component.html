@@ -36,7 +36,7 @@
     </ng-template>
     <ng-template pTemplate="groupheader" let-purchase let-rowIndex="rowIndex" let-expanded="expanded">
       <tr>
-        <td colspan="6">
+        <td colspan="7">
           <button type="button" pButton pRipple [pRowToggler]="purchase" class="p-button-text p-button-rounded p-button-plain mr-2" [icon]="expanded ? 'pi pi-chevron-down' : 'pi pi-chevron-right'"></button>
           <span class="font-bold ml-2">{{purchase.order.order_number}}</span>
         </td>
@@ -44,8 +44,8 @@
     </ng-template>
     <ng-template pTemplate="groupfooter" let-purchase>
       <tr class="p-rowgroup-footer">
-        <td colspan="4" style="text-align: right">Total</td>
-        <td>{{calculatePurchaseTotal(purchase.order.order_number)}}</td>
+        <td colspan="6" style="text-align: right">Total</td>
+        <td>${{calculatePurchaseTotal(purchase.order.order_number)|number}}</td>
       </tr>
     </ng-template>
     <ng-template pTemplate="rowexpansion" let-purchase>
@@ -57,13 +57,13 @@
           {{purchase.id}}
         </td>
         <td>
-          {{purchase.order_date}}
+          {{purchase.order_date|date}}
         </td>
         <td>
           {{purchase.product.product_name}}
         </td>
         <td>
-          {{purchase.product.product_price}}
+          ${{purchase.product.product_price|number}}
         </td>
         <td>
           {{purchase.order_product_quantity}}
@@ -73,7 +73,7 @@
           <i style="margin-left: 20px" (click)="selectedPurchase=purchase;fill_form_purchase()" class="pi pi-pencil"></i>
         </td>
         <td>
-          {{purchase.order_subtotal}}
+          ${{purchase.order_product_quantity*purchase.product.product_price|number}}
         </td>
       </tr>
     </ng-template>

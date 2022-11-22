@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ApiService} from "../providers/api.service";
 import {FormBuilder} from "@angular/forms";
 
@@ -9,31 +9,32 @@ import {FormBuilder} from "@angular/forms";
 })
 export class SoldComponent implements OnInit {
 
-  invoices:any = []
-  products:any = []
-  sales:any = []
+  invoices: any = []
+  products: any = []
+  sales: any = []
   show_form_sales: boolean = false;
   form_sale = this.fb.group({
-    id:[''],
-    invoice_id:[''],
-    invoice_date:[''],
-    product_id:[''],
-    invoice_product_quantity:[''],
-    invoice_subtotal:[''],
-    invoice_total:['0'],
-    sold_enabled:['True'],
+    id: [''],
+    invoice_id: [''],
+    invoice_date: [''],
+    product_id: [''],
+    invoice_product_quantity: [''],
+    invoice_subtotal: [''],
+    invoice_total: ['0'],
+    sold_enabled: ['True'],
   })
   selectedClient: any;
   options = [
-    {label:'Activo', value:true},
-    {label:'Inactivo', value:false},
+    {label: 'Activo', value: true},
+    {label: 'Inactivo', value: false},
   ]
   selectedSale: any;
   quantity: any;
   disabled: boolean = true;
   product_name: any;
 
-  constructor(private api:ApiService, private fb:FormBuilder) { }
+  constructor(private api: ApiService, private fb: FormBuilder) {
+  }
 
   ngOnInit(): void {
     this.get_invoices()
@@ -55,30 +56,30 @@ export class SoldComponent implements OnInit {
     return total;
   }
 
-  get_invoices(){
+  get_invoices() {
     this.api.get('invoice')
       .subscribe(
-        data=>{
+        data => {
           this.invoices = data
           console.log(data)
         }
       )
   }
 
-  get_products(){
+  get_products() {
     this.api.get('product')
       .subscribe(
-        data=>{
+        data => {
           this.products = data
           console.log(data)
         }
       )
   }
 
-  get_sales(){
+  get_sales() {
     this.api.get('sold')
       .subscribe(
-        data=>{
+        data => {
           this.sales = data
           console.log(data)
         }
@@ -88,12 +89,12 @@ export class SoldComponent implements OnInit {
   save_sale() {
     this.api.post('sold', this.form_sale.value)
       .subscribe(
-        data=>{
-          if(data != undefined){
+        data => {
+          if (data != undefined) {
             this.get_sales()
             this.show_form_sales = false
             this.form_sale.reset()
-          }else {
+          } else {
             //TODO
           }
         }
@@ -103,12 +104,12 @@ export class SoldComponent implements OnInit {
   update_sale() {
     this.api.update('sold', this.form_sale.value, this.form_sale.value['id'])
       .subscribe(
-        data=>{
-          if(data != undefined){
+        data => {
+          if (data != undefined) {
             this.get_sales()
             this.show_form_sales = false
             this.form_sale.reset()
-          }else {
+          } else {
             //TODO
           }
         }
@@ -118,7 +119,7 @@ export class SoldComponent implements OnInit {
   fill_form_sale() {
     this.form_sale.reset()
     this.form_sale.patchValue({
-      id:this.selectedSale.id,
+      id: this.selectedSale.id,
       invoice_id: this.selectedSale.invoice.id,
       invoice_date: this.selectedSale.invoice_date,
       product_id: this.selectedSale.product.id,
@@ -130,18 +131,19 @@ export class SoldComponent implements OnInit {
     this.show_form_sales = true;
   }
 
-  save(){
-    if(this.form_sale.value['id']){
+  save() {
+    if (this.form_sale.value['id']) {
       this.update_sale()
-    }else {
+    } else {
       this.save_sale()
     }
   }
 
-  clean_form(){
+  clean_form() {
     this.form_sale.reset()
     this.show_form_sales = false
   }
+
 
 
 }

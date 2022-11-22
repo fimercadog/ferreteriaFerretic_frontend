@@ -152,7 +152,7 @@ export class PurchaseComponent implements OnInit {
   crear_matriz_produtos(purchase:any){
     let matriz=[]
     for(let i=0;i<purchase.order_product_quantity;i++){
-      matriz.push({'product':i,'en_uso':false})
+      matriz.push({'myproducto':i,'en_uso':false})
     }
     return matriz
   }
@@ -160,4 +160,7 @@ export class PurchaseComponent implements OnInit {
   ver_matriz(sala:any) {
     console.log(JSON.parse(this.purchases.matriz_productos))
   }
+
+
+
 }
